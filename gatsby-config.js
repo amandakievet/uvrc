@@ -1,8 +1,12 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`
+});
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Tailwind`,
-    description: `Gatsby starter styled with Tailwind`,
-    author: `@taylorbryant`
+    title: `Upper Valley Running Club`,
+    description: `A running club in the Upper Valley of Vermont and New Hampshire`,
+    author: `@amandakievet`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,8 +18,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#4dc0b5`,
-        display: `minimal-ui`,
-        icon: `src/images/tailwind-icon.png`
+        display: `minimal-ui`
       }
     },
     `gatsby-plugin-postcss`,
@@ -26,6 +29,14 @@ module.exports = {
         purgeOnly: [`src/css/style.css`]
       }
     },
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: `uvrc`,
+        accessToken: `${process.env.PRISMIC_API_KEY}`,
+        linkResolver: ({ node, key, value }) => post => `/${post.uid}`
+      }
+    }
   ]
 };
