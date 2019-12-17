@@ -21,6 +21,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allPrismicExample {
+        edges {
+          node {
+            uid
+            data {
+              text
+            }
+          }
+        }
+      }
     }
   `);
 
@@ -29,6 +39,17 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/newsletters/${edge.node.uid}`,
       component: newsletterTemplate,
+      context: {
+        uid: edge.node.uid
+      }
+    });
+  });
+
+  const exampleTemplate = path.resolve("src/templates/example.js");
+  pages.data.allPrismicExample.edges.forEach(edge => {
+    createPage({
+      path: `/${edge.node.uid}`,
+      component: exampleTemplate,
       context: {
         uid: edge.node.uid
       }
