@@ -36,6 +36,11 @@ From root directory run
 gatsby develop
 ```
 
+To see local site visit http://localhost:8000/
+To see Graphql interface visit http://localhost:8000/___graphql
+
+_You'll need access to the Prismic repository in order to create new CMS content. TBD whether or not to upgrade to have a larger team_
+
 ## Resources
 
 - [Gatsby documentation](https://www.gatsbyjs.org/docs/)
