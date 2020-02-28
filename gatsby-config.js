@@ -33,9 +33,17 @@ module.exports = {
     {
       resolve: "gatsby-source-prismic",
       options: {
-        repositoryName: `uvrc`,
+        repositoryName: `uppervalleyrunningclub`,
         accessToken: `${process.env.PRISMIC_API_KEY}`,
         linkResolver: ({ node, key, value }) => post => `/${post.uid}`
+      }
+    },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Poppins:700","Roboto:400,400i,700"]
+        }
       }
     }
   ]

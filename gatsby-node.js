@@ -13,46 +13,28 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const pages = await graphql(`
-    {
-      allPrismicNewsletter {
-        edges {
-          node {
-            uid
-          }
-        }
-      }
-      allPrismicExample {
-        edges {
-          node {
-            uid
-            data {
-              text
-            }
-          }
-        }
-      }
-    }
+
   `);
 
-  const newsletterTemplate = path.resolve("src/templates/newsletter.js");
-  pages.data.allPrismicNewsletter.edges.forEach(edge => {
-    createPage({
-      path: `/newsletters/${edge.node.uid}`,
-      component: newsletterTemplate,
-      context: {
-        uid: edge.node.uid
-      }
-    });
-  });
-
-  const exampleTemplate = path.resolve("src/templates/example.js");
-  pages.data.allPrismicExample.edges.forEach(edge => {
-    createPage({
-      path: `/${edge.node.uid}`,
-      component: exampleTemplate,
-      context: {
-        uid: edge.node.uid
-      }
-    });
-  });
+  // const newsletterTemplate = path.resolve("src/templates/newsletter.js");
+  // pages.data.allPrismicNewsletter.edges.forEach(edge => {
+  //   createPage({
+  //     path: `/newsletters/${edge.node.uid}`,
+  //     component: newsletterTemplate,
+  //     context: {
+  //       uid: edge.node.uid
+  //     }
+  //   });
+  // });
+  //
+  // const exampleTemplate = path.resolve("src/templates/example.js");
+  // pages.data.allPrismicExample.edges.forEach(edge => {
+  //   createPage({
+  //     path: `/${edge.node.uid}`,
+  //     component: exampleTemplate,
+  //     context: {
+  //       uid: edge.node.uid
+  //     }
+  //   });
+  // });
 };

@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
         title="Home"
       />
 
-      <h1>{headline}</h1>
+      <h1 className="text-5xl">{headline.text}</h1>
     </Layout>
   );
 };
@@ -22,7 +22,9 @@ export const query = graphql`
   {
     prismicHome {
       data {
-        headline
+        headline {
+          text
+        }
       }
     }
   }
