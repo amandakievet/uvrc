@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import UpcomingEvents from "../components/upcoming-events";
 
 const IndexPage = ({ data }) => {
   const { headline } = data.prismicHome.data;
@@ -14,6 +15,7 @@ const IndexPage = ({ data }) => {
       />
 
       <h1 className="text-5xl">{headline.text}</h1>
+      <UpcomingEvents />
     </Layout>
   );
 };

@@ -42,8 +42,14 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Poppins:700","Roboto:400,400i,700"]
+          families: ["Poppins:700", "Roboto:400,400i,700"]
         }
+      }
+    },
+    {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        groupUrlName: "Upper-Valley-Running-Club"
       }
     }
   ]

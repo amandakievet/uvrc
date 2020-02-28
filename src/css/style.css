@@ -23,5 +23,9 @@ h4 {
   @apply bg-primary-lighter;
 }
 
+.btn-link {
+  @apply chunkyLabel border-b-2;
+}
+
 @tailwind components;
 @tailwind utilities;
