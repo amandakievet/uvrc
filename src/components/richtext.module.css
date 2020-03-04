@@ -1,0 +1,7 @@
+.rt a {
+  @apply underline;
+}
+
+.rt a:hover {
+  @apply no-underline;
+}
