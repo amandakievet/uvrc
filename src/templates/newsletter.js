@@ -5,6 +5,8 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichText from "../components/richtext";
 
+import tagOrder from "../data/article-tags";
+
 const EditorProfile = ({ name, description, profile_picture }) => (
   <div className="flex">
     <img src={profile_picture.url} className="rounded-full w-16 mr-4" />
@@ -13,6 +15,18 @@ const EditorProfile = ({ name, description, profile_picture }) => (
       <RichText html={description.html} className="text-sm" />
     </div>
   </div>
+);
+
+const TableOfContentsLink = ({ author, headline, tag }) => (
+  <li className="pb-2">
+    <a href="" className="underline hover:no-underline">
+      {tag === "Ask the Coaches" && <>Ask the Coaches: </>}
+      {tag === "Letter from a Board Member" && (
+        <>Letter from a Board Member: </>
+      )}{" "}
+      {headline.text} {author && <>by {author}</>}
+    </a>
+  </li>
 );
 
 const NewsletterTemplate = ({ data, pageContext }) => {
@@ -26,13 +40,6 @@ const NewsletterTemplate = ({ data, pageContext }) => {
   const currentEditor = newsletter_editors.filter(e => e.name === editor);
 
   let articles = data.allPrismicArticle.edges;
-
-  const tagOrder = [
-    "Letter from a Board Member",
-    "Social Events",
-    "Member Submission",
-    "Ask the Coaches"
-  ];
 
   const articleCompare = (a, b) => {
     if (tagOrder.indexOf(a.node.data.tag) < tagOrder.indexOf(b.node.data.tag)) {
@@ -49,20 +56,22 @@ const NewsletterTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={title.text} />
-      <h1 className="text-5xl text-center mb-10">{title.text}</h1>
-      <div className="flex">
-        <div>
-          <h2 className="chunkyLabel">Note from the Editor</h2>
-          <RichText html={note_from_the_editor.html} className="mb-10" />
-          <EditorProfile {...currentEditor[0]} />
-        </div>
-        <div>
-          <h2 className="chunkyLabel">Table of Contents</h2>
-          {articles.map(({ node }, index) => (
-            <a href="">
-              {node.data.headline.text} by {node.data.author}{" "}
-            </a>
-          ))}
+      <div className="max-w-6xl mx-auto border-b-2 pb-10">
+        <h1 className="text-5xl text-center mb-10">{title.text}</h1>
+        <div className="flex">
+          <div className="mr-8">
+            <h2 className="chunkyLabel pb-4">Note from the Editor</h2>
+            <RichText html={note_from_the_editor.html} className="mb-10" />
+            <EditorProfile {...currentEditor[0]} />
+          </div>
+          <div>
+            <h2 className="chunkyLabel pb-4">Table of Contents</h2>
+            <ul>
+              {articles.map(({ node }, index) => (
+                <TableOfContentsLink {...node.data} key={index} />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </Layout>
