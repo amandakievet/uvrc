@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichText from "../components/richtext";
+import Article from "../components/article";
 
 import tagOrder from "../data/article-tags";
 
@@ -74,6 +75,11 @@ const NewsletterTemplate = ({ data, pageContext }) => {
           </div>
         </div>
       </div>
+      <div>
+        {articles.map(({ node }, index) => (
+          <Article {...node.data} key={index} />
+        ))}
+      </div>
     </Layout>
   );
 };
@@ -114,6 +120,41 @@ export const query = graphql`
             }
             author
             tag
+            richtext {
+              html
+            }
+            body {
+              ... on PrismicArticleBodyAskTheCoaches {
+                slice_type
+              }
+              ... on PrismicArticleBodyFullsizeImage {
+                id
+                slice_type
+              }
+              ... on PrismicArticleBodyImageGallery {
+                slice_type
+              }
+              ... on PrismicArticleBodyRichtext {
+                slice_type
+                primary {
+                  rich_text {
+                    html
+                  }
+                }
+              }
+              ... on PrismicArticleBodyRowImageText {
+                slice_type
+                primary {
+                  image {
+                    url
+                  }
+                  image_position
+                  richtext {
+                    html
+                  }
+                }
+              }
+            }
           }
         }
       }
