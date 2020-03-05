@@ -12,6 +12,7 @@ const ImageGallery = ({ items }) => {
             className="w-64 cursor-pointer p-3"
             src={gallery_image.Thumbnail.url}
             onClick={() => setToggler(!toggler)}
+            key={index}
           />
         ))}
       </div>

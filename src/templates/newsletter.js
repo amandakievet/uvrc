@@ -128,8 +128,12 @@ export const query = graphql`
                 slice_type
               }
               ... on PrismicArticleBodyFullsizeImage {
-                id
                 slice_type
+                primary {
+                  image {
+                    url
+                  }
+                }
               }
               ... on PrismicArticleBodyImageGallery {
                 slice_type

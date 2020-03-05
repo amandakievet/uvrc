@@ -23,6 +23,9 @@ module.exports = {
           lightest: "#868686",
           lighter: "#4a4a4a",
           default: "#000000"
+        },
+        accent: {
+          default: "#999999"
         }
       }
     }
