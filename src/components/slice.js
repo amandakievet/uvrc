@@ -3,11 +3,14 @@ import classnames from "classnames";
 
 import ImageGallery from "./image-gallery";
 import RichText from "./richtext";
+import AskTheCoaches from "./ask-the-coaches";
 
 const Slice = ({ slice_type, primary, items }) => (
   <>
     {slice_type === "row_image___text" && <RowImageText primary={primary} />}
-    {slice_type === "ask_the_coaches" && <div>Ask the Coaches</div>}
+    {slice_type === "ask_the_coaches" && (
+      <AskTheCoaches primary={primary} items={items} />
+    )}
     {slice_type === "fullsize_image" && (
       <img src={primary.image.url} className="mb-8 max-h-screen" />
     )}

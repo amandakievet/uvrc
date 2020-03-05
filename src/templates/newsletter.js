@@ -5,18 +5,9 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichText from "../components/richtext";
 import Article from "../components/article";
+import Profile from "../components/profile";
 
 import tagOrder from "../data/article-tags";
-
-const EditorProfile = ({ name, description, profile_picture }) => (
-  <div className="flex">
-    <img src={profile_picture.url} className="rounded-full w-16 mr-4" />
-    <div>
-      <h5 className="font-display text-lg">{name}</h5>
-      <RichText html={description.html} className="text-sm" />
-    </div>
-  </div>
-);
 
 const TableOfContentsLink = ({ author, headline, tag }) => (
   <li className="pb-2">
@@ -38,7 +29,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
     editor
   } = data.prismicNewsletter.data;
   const { newsletter_editors } = data.prismicPeople.data;
-  const currentEditor = newsletter_editors.filter(e => e.name === editor);
+  const currentEditor = newsletter_editors.filter(e => e.name === editor)[0];
 
   let articles = data.allPrismicArticle.edges;
 
@@ -63,7 +54,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
           <div className="mr-8">
             <h2 className="chunkyLabel pb-4">Note from the Editor</h2>
             <RichText html={note_from_the_editor.html} className="mb-10" />
-            <EditorProfile {...currentEditor[0]} />
+            <Profile {...currentEditor} />
           </div>
           <div>
             <h2 className="chunkyLabel pb-4">Table of Contents</h2>
@@ -126,6 +117,16 @@ export const query = graphql`
             body {
               ... on PrismicArticleBodyAskTheCoaches {
                 slice_type
+                primary {
+                  question
+                  question_asker
+                }
+                items {
+                  answer {
+                    html
+                  }
+                  coach
+                }
               }
               ... on PrismicArticleBodyFullsizeImage {
                 slice_type
