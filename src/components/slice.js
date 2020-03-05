@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 
+import ImageGallery from "./image-gallery";
 import RichText from "./richtext";
 
 const Slice = ({ slice_type, primary, items }) => (
@@ -9,7 +10,7 @@ const Slice = ({ slice_type, primary, items }) => (
     {slice_type === "ask_the_coaches" && <div>Ask the Coaches</div>}
     {slice_type === "fullsize_image" && <div>Fullsize Image</div>}
     {slice_type === "richtext" && <RichText html={primary.rich_text.html} />}
-    {slice_type === "image_gallery" && <div>Image Gallery</div>}
+    {slice_type === "image_gallery" && <ImageGallery items={items} />}
   </>
 );
 

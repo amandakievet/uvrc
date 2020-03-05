@@ -133,6 +133,14 @@ export const query = graphql`
               }
               ... on PrismicArticleBodyImageGallery {
                 slice_type
+                items {
+                  gallery_image {
+                    url
+                    Thumbnail {
+                      url
+                    }
+                  }
+                }
               }
               ... on PrismicArticleBodyRichtext {
                 slice_type
