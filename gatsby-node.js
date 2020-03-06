@@ -14,7 +14,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const pages = await graphql(`
     {
-      allPrismicNewsletter {
+      allPrismicNewsletter(sort: { fields: data___month }) {
         edges {
           node {
             uid
@@ -32,5 +32,14 @@ exports.createPages = async ({ graphql, actions }) => {
         uid: edge.node.uid
       }
     });
+  });
+
+  const currentNewsletter = pages.data.allPrismicNewsletter.edges[0];
+  createPage({
+    path: `/newsletter`,
+    component: path.resolve("src/templates/newsletter-home.js"),
+    context: {
+      uid: currentNewsletter.node.uid
+    }
   });
 };

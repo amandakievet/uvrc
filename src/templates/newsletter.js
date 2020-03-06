@@ -7,16 +7,13 @@ import RichText from "../components/richtext";
 import Article from "../components/article";
 import Profile from "../components/profile";
 
-import tagOrder from "../data/article-tags";
+import { articleCompare, embellishTitle } from "../utils/article";
 
 const TableOfContentsLink = ({ author, headline, tag }) => (
   <li className="pb-2">
     <a href="" className="underline hover:no-underline">
-      {tag === "Ask the Coaches" && <>Ask the Coaches: </>}
-      {tag === "Letter from a Board Member" && (
-        <>Letter from a Board Member: </>
-      )}{" "}
-      {headline.text} {author && <>by {author}</>}
+      {embellishTitle(headline.text, tag)}
+      {author && <> by {author}</>}
     </a>
   </li>
 );
@@ -32,16 +29,6 @@ const NewsletterTemplate = ({ data, pageContext }) => {
   const currentEditor = newsletter_editors.filter(e => e.name === editor)[0];
 
   let articles = data.allPrismicArticle.edges;
-
-  const articleCompare = (a, b) => {
-    if (tagOrder.indexOf(a.node.data.tag) < tagOrder.indexOf(b.node.data.tag)) {
-      return -1;
-    }
-    if (tagOrder.indexOf(a.node.data.tag) > tagOrder.indexOf(b.node.data.tag)) {
-      return 1;
-    }
-    return 0;
-  };
 
   articles.sort(articleCompare);
 
