@@ -21,6 +21,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allPrismicArticle {
+        edges {
+          node {
+            uid
+          }
+        }
+      }
     }
   `);
 
@@ -41,5 +48,15 @@ exports.createPages = async ({ graphql, actions }) => {
     context: {
       uid: currentNewsletter.node.uid
     }
+  });
+
+  pages.data.allPrismicArticle.edges.forEach(edge => {
+    createPage({
+      path: `/${edge.node.uid}`,
+      component: path.resolve("src/templates/article.js"),
+      context: {
+        uid: edge.node.uid
+      }
+    });
   });
 };

@@ -1,17 +1,54 @@
 import React from "react";
+import classnames from "classnames";
 import RichText from "./richtext";
 import Slice from "./slice";
 
-const Article = ({ headline, author, tag, richtext, body }) => (
-  <div className="border-b-2 py-4">
-    <div className="mb-8">
-      {tag && <span className="chunkyLabel text-sm text-accent">{tag}</span>}
-      <h2 className="text-4xl mb-2">{headline.text}</h2>
-      {author && <p className="font-display">By: {author}</p>}
-    </div>
-    {richtext && <RichText html={richtext.html} className="max-w-3xl" />}
-    {body && body.map((slice, index) => <Slice {...slice} key={index} />)}
+const BoldHeader = ({ headline, author, tag }) => (
+  <div className="mb-8 text-center">
+    {tag && <span className="chunkyLabel text-sm text-accent">{tag}</span>}
+    <h2 className="text-5xl mb-2">{headline.text}</h2>
+    {author && <p className="font-display">By: {author}</p>}
   </div>
 );
+const Header = ({ headline, author, tag }) => (
+  <div className="mb-8">
+    {tag && <span className="chunkyLabel text-sm text-accent">{tag}</span>}
+    <h2 className="text-4xl mb-2">{headline.text}</h2>
+    {author && <p className="font-display">By: {author}</p>}
+  </div>
+);
+
+const Article = ({
+  headline,
+  author,
+  tag,
+  richtext,
+  body,
+  className,
+  display
+}) => {
+  const headerProps = { headline, author, tag };
+  return (
+    <div className={className}>
+      {display === "bold" ? (
+        <BoldHeader {...headerProps} />
+      ) : (
+        <Headline {...headerProps} />
+      )}
+      {richtext && (
+        <RichText
+          html={richtext.html}
+          className={classnames("max-w-3xl", {
+            "mx-auto": display === "bold"
+          })}
+        />
+      )}
+      {body &&
+        body.map((slice, index) => (
+          <Slice {...slice} key={index} display={display} />
+        ))}
+    </div>
+  );
+};
 
 export default Article;

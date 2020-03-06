@@ -55,7 +55,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
       </div>
       <div>
         {articles.map(({ node }, index) => (
-          <Article {...node.data} key={index} />
+          <Article {...node.data} key={index} className="border-b-2 py-4" />
         ))}
       </div>
     </Layout>

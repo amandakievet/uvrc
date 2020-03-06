@@ -1,5 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import classnames from "classnames";
 import RichText from "./richtext";
 import Profile from "./profile";
 
@@ -32,9 +33,13 @@ const Answer = ({ answer, coach }) => {
   );
 };
 
-const AskTheCoaches = ({ items, primary }) => {
+const AskTheCoaches = ({ items, primary, display }) => {
   return (
-    <div className="max-w-3xl">
+    <div
+      className={classnames("max-w-3xl", {
+        "mx-auto": display === "bold"
+      })}
+    >
       <p className="font-bold">{primary.question}</p>
       {primary.question_asker && (
         <p className="font-bold">— {primary.question_asker}</p>

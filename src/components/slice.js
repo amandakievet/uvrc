@@ -5,17 +5,27 @@ import ImageGallery from "./image-gallery";
 import RichText from "./richtext";
 import AskTheCoaches from "./ask-the-coaches";
 
-const Slice = ({ slice_type, primary, items }) => (
+const Slice = ({ slice_type, primary, items, display }) => (
   <>
     {slice_type === "row_image___text" && <RowImageText primary={primary} />}
     {slice_type === "ask_the_coaches" && (
-      <AskTheCoaches primary={primary} items={items} />
+      <AskTheCoaches primary={primary} items={items} display={display} />
     )}
     {slice_type === "fullsize_image" && (
-      <img src={primary.image.url} className="mb-8 max-h-screen" />
+      <img
+        src={primary.image.url}
+        className={classnames("mb-8 max-h-screen", {
+          "mx-auto": display === "bold"
+        })}
+      />
     )}
     {slice_type === "richtext" && (
-      <RichText html={primary.rich_text.html} className="max-w-3xl" />
+      <RichText
+        html={primary.rich_text.html}
+        className={classnames("max-w-3xl", {
+          "mx-auto": display === "bold"
+        })}
+      />
     )}
     {slice_type === "image_gallery" && <ImageGallery items={items} />}
   </>

@@ -3,14 +3,13 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Article from "../components/article";
 
 const ArticleTemplate = ({ data, pageContext }) => {
-  const { headline, author } = data.prismicArticle.data;
   return (
     <Layout>
-      <SEO title={title.text} />
-      <h1>{headline.text}</h1>
-      {author && <p>By: {author}</p>}
+      <SEO title={data.prismicArticle.data.headline.text} />
+      <Article {...data.prismicArticle.data} display="bold" />
     </Layout>
   );
 };
@@ -23,6 +22,64 @@ export const query = graphql`
           text
         }
         author
+        tag
+        richtext {
+          html
+        }
+        body {
+          ... on PrismicArticleBodyAskTheCoaches {
+            slice_type
+            primary {
+              question
+              question_asker
+            }
+            items {
+              answer {
+                html
+              }
+              coach
+            }
+          }
+          ... on PrismicArticleBodyFullsizeImage {
+            slice_type
+            primary {
+              image {
+                url
+              }
+            }
+          }
+          ... on PrismicArticleBodyImageGallery {
+            slice_type
+            items {
+              gallery_image {
+                url
+                Thumbnail {
+                  url
+                }
+              }
+            }
+          }
+          ... on PrismicArticleBodyRichtext {
+            slice_type
+            primary {
+              rich_text {
+                html
+              }
+            }
+          }
+          ... on PrismicArticleBodyRowImageText {
+            slice_type
+            primary {
+              image {
+                url
+              }
+              image_position
+              richtext {
+                html
+              }
+            }
+          }
+        }
       }
     }
   }
