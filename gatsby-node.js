@@ -28,6 +28,19 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      wordpressNewsletters: allWordpressPost(
+        filter: { categories: { elemMatch: { name: { eq: "Newsletters" } } } }
+      ) {
+        edges {
+          node {
+            id
+            title
+            path
+            author
+            content
+          }
+        }
+      }
     }
   `);
 
@@ -56,6 +69,16 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve("src/templates/article.js"),
       context: {
         uid: edge.node.uid
+      }
+    });
+  });
+
+  pages.data.wordpressNewsletters.edges.forEach(edge => {
+    createPage({
+      path: edge.node.path,
+      component: path.resolve("src/templates/wp-newsletter.js"),
+      context: {
+        id: edge.node.id
       }
     });
   });
