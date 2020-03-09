@@ -51,6 +51,16 @@ module.exports = {
       options: {
         groupUrlName: "Upper-Valley-Running-Club"
       }
+    },
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        baseUrl: "uppervalleyrunningclub.org",
+        protocol: "http",
+        hostingWPCOM: false,
+        useACF: false,
+        includedRoutes: ["**/categories", "**/posts", "**/pages"]
+      }
     }
   ]
 };
