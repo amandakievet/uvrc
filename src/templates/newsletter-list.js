@@ -6,8 +6,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import PageTitle from "../components/page-title";
 import Pagination from "../components/pagination";
-
-import { articleCompare, embellishTitle } from "../utils/article";
+import NewsletterArticleList from "../components/newsletter-article-list";
 
 const NewsletterListTemplate = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
@@ -20,9 +19,9 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
         <div className="flex flex-wrap">
           {data.allPrismicNewsletter.edges.map(({ node }, index) => {
             const { title, month } = node.data;
-            const articles = data.newsletterArticles.edges
-              .filter(article => article.node.data.newsletter.uid === node.uid)
-              .sort(articleCompare);
+            const articles = data.newsletterArticles.edges.filter(
+              article => article.node.data.newsletter.uid === node.uid
+            );
             return (
               <Link
                 to={`/${node.uid}`}
@@ -34,13 +33,9 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
                     {moment(month).format("MMMM Do YYYY")}
                   </p>
                   <h2 className="text-3xl leading-tight mb-3">{title.text}</h2>
-                  {articles.map(({ node }, index) => (
-                    <>
-                      {index !== 0 && ", "}
-                      {embellishTitle(node.data.headline.text, node.data.tag)}
-                      {node.data.author && <> by {node.data.author}</>}
-                    </>
-                  ))}
+                  <div className="text-sm">
+                    <NewsletterArticleList articles={articles} />
+                  </div>
                 </div>
               </Link>
             );

@@ -5,13 +5,11 @@ import classnames from "classnames";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import ArticleCard from "../components/article-card";
-
-import { articleCompare, embellishTitle } from "../utils/article";
+import NewsletterArticleList from "../components/newsletter-article-list";
 
 const NewsletterHome = ({ data }) => {
   const { newsletter, articleList } = data;
   let newsletterArticles = data.newsletterArticles.edges;
-  newsletterArticles.sort(articleCompare);
 
   return (
     <Layout>
@@ -23,13 +21,7 @@ const NewsletterHome = ({ data }) => {
         <div className="max-w-2xl mx-auto px-4 text-center mb-16">
           <h1 className="text-4xl mb-2">{newsletter.data.title.text}</h1>
           <div className="text-sm">
-            {newsletterArticles.map(({ node }, index) => (
-              <>
-                {index !== 0 && ", "}
-                {embellishTitle(node.data.headline.text, node.data.tag)}
-                {node.data.author && <> by {node.data.author}</>}
-              </>
-            ))}
+            <NewsletterArticleList articles={newsletterArticles} />
             <div className="flex justify-center mt-6">
               <Link
                 to={`/${newsletter.uid}`}
