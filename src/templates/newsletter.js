@@ -6,6 +6,7 @@ import SEO from "../components/seo";
 import RichText from "../components/richtext";
 import Article from "../components/article";
 import Profile from "../components/profile";
+import PageTitle from "../components/page-title";
 
 import { articleCompare, embellishTitle } from "../utils/article";
 
@@ -36,7 +37,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
     <Layout>
       <SEO title={title.text} />
       <div className="max-w-6xl mx-auto border-b-2 pb-10">
-        <h1 className="text-5xl text-center mb-10">{title.text}</h1>
+        <PageTitle text={title.text} />
         <div className="flex">
           <div className="mr-8">
             <h2 className="chunkyLabel pb-4">Note from the Editor</h2>

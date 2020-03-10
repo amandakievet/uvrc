@@ -1,0 +1,72 @@
+import React from "react";
+import { graphql, Link } from "gatsby";
+import moment from "moment";
+
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import RichTextWP from "../components/richtext-wp";
+import PageTitle from "../components/page-title";
+
+const WordpressNewsletterListTemplate = ({ data, pageContext }) => {
+  const { next, prev } = pageContext;
+
+  return (
+    <Layout>
+      <SEO title="All Newsletters" />
+      <PageTitle title="All Newsletters (from Wordpress)" />
+      <div className="max-w-5xl mx-auto px-4 w-full">
+        <div className="flex flex-wrap">
+          {data.allWordpressPost.edges.map(({ node }, index) => {
+            const excerpt = node.content.split("<!--more-->")[0];
+            return (
+              <Link
+                to={`/${node.slug}`}
+                key={index}
+                className="mb-8 block md:w-1/2 md:px-4"
+              >
+                <div className="border-t-2 pt-4">
+                  <p className="text-gray-500 chunkyLabel">
+                    {moment(node.date).format("MMMM Do YYYY")}
+                  </p>
+                  <h2 className="text-3xl leading-tight mb-3">{node.title}</h2>
+
+                  <RichTextWP html={node.excerpt} className="text-sm" />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="flex justify-between chunkyLabel">
+          {prev && <Link to={prev}>Newer</Link>}
+          {next && (
+            <Link to={next} className="ml-auto">
+              Older
+            </Link>
+          )}
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default WordpressNewsletterListTemplate;
+
+export const query = graphql`
+  query wordpressNewsletterListQuery($skip: Int!, $limit: Int!) {
+    allWordpressPost(
+      filter: { categories: { elemMatch: { name: { eq: "Newsletters" } } } }
+      limit: $limit
+      skip: $skip
+    ) {
+      edges {
+        node {
+          title
+          slug
+          date
+          content
+          excerpt
+        }
+      }
+    }
+  }
+`;

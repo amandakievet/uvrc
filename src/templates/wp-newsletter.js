@@ -10,8 +10,8 @@ const WordpressNewsletterTemplate = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title={title.text} />
-      <div className="max-w-6xl mx-auto border-b-2 pb-10">
+      <SEO title={title} />
+      <div className="max-w-6xl mx-auto">
         <h1 className="text-5xl text-center mb-10">{title}</h1>
       </div>
       <div>

@@ -1,0 +1,64 @@
+.rt a {
+  @apply underline;
+}
+
+.rt a:hover {
+  @apply no-underline;
+}
+
+.rt p {
+  @apply pb-4 leading-relaxed;
+}
+
+.rt h1,
+.rt h2,
+.rt h3,
+.rt h4,
+.rt h5 {
+  @apply leading-tight;
+}
+
+.rt h1,
+.rt h2,
+.rt h3 {
+  @apply mb-4 mt-8;
+}
+
+.rt h4,
+.rt h5 {
+  @apply mb-2 mt-4;
+}
+
+.rt h1 {
+  @apply text-3xl;
+}
+.rt h2 {
+  @apply text-xl;
+}
+.rt h3 {
+  @apply text-xl;
+}
+.rt h4 {
+  @apply text-lg;
+}
+.rt h5 {
+  @apply text-base;
+}
+
+@screen md {
+  .rt h1 {
+    @apply text-4xl;
+  }
+
+  .rt h2 {
+    @apply text-2xl;
+  }
+
+  .rt h3 {
+    @apply text-2xl;
+  }
+
+  .rt h4 {
+    @apply text-xl;
+  }
+}
