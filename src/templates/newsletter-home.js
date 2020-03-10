@@ -55,7 +55,7 @@ const NewsletterHome = ({ data }) => {
             {articleList.edges.length % 2 !== 0 && (
               <ArticleCard
                 className="border-b-2"
-                uid="submission-guidelines"
+                uid="newsletter-submission-guidelines"
                 headline={{ text: "Submission Guidelines" }}
                 tag="Note from the Editors"
               />
