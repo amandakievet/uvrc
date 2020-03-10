@@ -39,7 +39,7 @@ const NewsletterHome = ({ data }) => {
           </div>
         </div>
         <div>
-          <div className="border-t-2 border-b-2 my-4 py-3">
+          <div className="border-t-2 border-b-2 mt-4 py-3">
             <h4 className="chunkyLabel text-center">Latest Articles</h4>
           </div>
           <div className="flex flex-wrap max-w-4xl mx-auto px-4 justify-center">
@@ -47,11 +47,19 @@ const NewsletterHome = ({ data }) => {
               <ArticleCard
                 {...node.data}
                 uid={node.uid}
-                className={classnames("border-t-2", {
+                className={classnames("border-b-2", {
                   "border-r-2": index % 2 === 0 || index === 0
                 })}
               />
             ))}
+            {articleList.edges.length % 2 !== 0 && (
+              <ArticleCard
+                className="border-b-2"
+                uid="submission-guidelines"
+                headline={{ text: "Submission Guidelines" }}
+                tag="Note from the Editors"
+              />
+            )}
           </div>
         </div>
       </div>

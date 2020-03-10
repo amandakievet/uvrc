@@ -12,7 +12,9 @@ const ArticleCard = ({ headline, author, tag, date, uid, className }) => (
     <h4 className="text-xl pb-3 leading-tight">{headline.text}</h4>
     <div className="text-xs flex justify-between font-display leading-tight">
       {author && <p>By {author}</p>}
-      <p className="text-gray-500">{moment(date).format("MMMM Do YYYY")}</p>
+      {date && (
+        <p className="text-gray-500">{moment(date).format("MMMM Do YYYY")}</p>
+      )}
     </div>
   </Link>
 );
