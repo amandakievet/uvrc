@@ -16,7 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const pages = await graphql(`
     {
-      allPrismicNewsletter(sort: { fields: data___month }) {
+      allPrismicNewsletter(sort: { fields: data___month, order: DESC }) {
         edges {
           node {
             uid
@@ -99,7 +99,8 @@ exports.createPages = async ({ graphql, actions }) => {
   Array.from({ length: numNewsletterListPages }).forEach((_, index) => {
     const source =
       index + 1 <= numPrismicNewsletterListPages ? "prismic" : "wordpress";
-    let component, uids;
+
+    let component, uids, skip;
 
     if (source === "prismic") {
       component = path.resolve("src/templates/newsletter-list.js");
@@ -108,9 +109,12 @@ exports.createPages = async ({ graphql, actions }) => {
       uids = allPrismicNewsletter
         .slice(firstItemIndex, lastItemIndex)
         .map(newsletter => newsletter.node.uid);
+
+      skip = index * newslettersPerPage;
     } else if (source === "wordpress") {
       component = path.resolve("src/templates/wp-newsletter-list.js");
       uids = [];
+      skip = (index - numPrismicNewsletterListPages) * newslettersPerPage;
     }
 
     createPage({
@@ -118,7 +122,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component,
       context: {
         limit: newslettersPerPage,
-        skip: index * newslettersPerPage,
+        skip,
         numPostsPerPage: newslettersPerPage,
         uids,
         prev:

@@ -60,7 +60,7 @@ export const query = graphql`
     $uids: [String!]
   ) {
     allPrismicNewsletter(
-      sort: { fields: data___month }
+      sort: { fields: data___month, order: DESC }
       limit: $limit
       skip: $skip
     ) {
