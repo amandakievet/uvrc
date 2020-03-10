@@ -33,7 +33,7 @@ const Article = ({
       {display === "bold" ? (
         <BoldHeader {...headerProps} />
       ) : (
-        <Headline {...headerProps} />
+        <Header {...headerProps} />
       )}
       {richtext && (
         <RichText
