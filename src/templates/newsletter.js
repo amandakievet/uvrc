@@ -10,9 +10,9 @@ import PageTitle from "../components/page-title";
 
 import { articleCompare, embellishTitle } from "../utils/article";
 
-const TableOfContentsLink = ({ author, headline, tag }) => (
+const TableOfContentsLink = ({ author, headline, tag, index }) => (
   <li className="pb-2">
-    <a href="" className="underline hover:no-underline">
+    <a href={`#${index + 1}`} className="underline hover:no-underline">
       {embellishTitle(headline.text, tag)}
       {author && <> by {author}</>}
     </a>
@@ -48,7 +48,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
             <h2 className="chunkyLabel pb-4">Table of Contents</h2>
             <ul>
               {articles.map(({ node }, index) => (
-                <TableOfContentsLink {...node.data} key={index} />
+                <TableOfContentsLink {...node.data} key={index} index={index} />
               ))}
             </ul>
           </div>
@@ -56,7 +56,10 @@ const NewsletterTemplate = ({ data, pageContext }) => {
       </div>
       <div>
         {articles.map(({ node }, index) => (
-          <Article {...node.data} key={index} className="border-b-2 py-4" />
+          <>
+            <a name={index + 1} />
+            <Article {...node.data} key={index} className="border-b-2 py-4" />
+          </>
         ))}
       </div>
     </Layout>
