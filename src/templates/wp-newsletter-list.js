@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichTextWP from "../components/richtext-wp";
 import PageTitle from "../components/page-title";
+import Pagination from "../components/pagination";
 
 const WordpressNewsletterListTemplate = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
@@ -36,14 +37,7 @@ const WordpressNewsletterListTemplate = ({ data, pageContext }) => {
             );
           })}
         </div>
-        <div className="flex justify-between chunkyLabel">
-          {prev && <Link to={prev}>Newer</Link>}
-          {next && (
-            <Link to={next} className="ml-auto">
-              Older
-            </Link>
-          )}
-        </div>
+        <Pagination {...pageContext} />
       </div>
     </Layout>
   );

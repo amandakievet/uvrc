@@ -5,6 +5,9 @@ import moment from "moment";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import PageTitle from "../components/page-title";
+import Pagination from "../components/pagination";
+
+import { articleCompare, embellishTitle } from "../utils/article";
 
 const NewsletterListTemplate = ({ data, pageContext }) => {
   const { next, prev } = pageContext;
@@ -17,6 +20,9 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
         <div className="flex flex-wrap">
           {data.allPrismicNewsletter.edges.map(({ node }, index) => {
             const { title, month } = node.data;
+            const articles = data.newsletterArticles.edges
+              .filter(article => article.node.data.newsletter.uid === node.uid)
+              .sort(articleCompare);
             return (
               <Link
                 to={`/${node.uid}`}
@@ -28,19 +34,23 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
                     {moment(month).format("MMMM Do YYYY")}
                   </p>
                   <h2 className="text-3xl leading-tight mb-3">{title.text}</h2>
+                  {articles.map(({ node }, index) => (
+                    <>
+                      {index !== 0 && ", "}
+                      {embellishTitle(node.data.headline.text, node.data.tag)}
+                      {node.data.author && <> by {node.data.author}</>}
+                    </>
+                  ))}
                 </div>
               </Link>
             );
           })}
         </div>
-        <div className="flex justify-between chunkyLabel">
-          {prev && <Link to={prev}>Newer</Link>}
-          {next && (
-            <Link to={next} className="ml-auto">
-              Older
-            </Link>
-          )}
-        </div>
+        {data.allPrismicNewsletter.edges.length <
+          pageContext.numPostsPerPage && (
+          <div>We've run out of new Prismic articles</div>
+        )}
+        <Pagination {...pageContext} />
       </div>
     </Layout>
   );
@@ -49,7 +59,11 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
 export default NewsletterListTemplate;
 
 export const query = graphql`
-  query prismicNewsletterListQuery($skip: Int!, $limit: Int!) {
+  query prismicNewsletterListQuery(
+    $skip: Int!
+    $limit: Int!
+    $uids: [String!]
+  ) {
     allPrismicNewsletter(
       sort: { fields: data___month }
       limit: $limit
@@ -64,6 +78,24 @@ export const query = graphql`
             month
           }
           uid
+        }
+      }
+    }
+    newsletterArticles: allPrismicArticle(
+      filter: { data: { newsletter: { uid: { in: $uids } } } }
+    ) {
+      edges {
+        node {
+          data {
+            headline {
+              text
+            }
+            tag
+            author
+            newsletter {
+              uid
+            }
+          }
         }
       }
     }
