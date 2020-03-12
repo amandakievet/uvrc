@@ -28,6 +28,28 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             uid
           }
+          next {
+            uid
+            data {
+              headline {
+                text
+              }
+              author
+              tag
+              date
+            }
+          }
+          previous {
+            uid
+            data {
+              headline {
+                text
+              }
+              author
+              tag
+              date
+            }
+          }
         }
       }
       wordpressNewsletters: allWordpressPost(
@@ -78,7 +100,9 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/${edge.node.uid}`,
       component: path.resolve("src/templates/article.js"),
       context: {
-        uid: edge.node.uid
+        uid: edge.node.uid,
+        next: edge.next,
+        previous: edge.previous
       }
     });
   });
