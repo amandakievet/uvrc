@@ -37,6 +37,9 @@ exports.createPages = async ({ graphql, actions }) => {
               author
               tag
               date
+              article_thumbnail {
+                url
+              }
             }
           }
           previous {
@@ -48,6 +51,9 @@ exports.createPages = async ({ graphql, actions }) => {
               author
               tag
               date
+              article_thumbnail {
+                url
+              }
             }
           }
         }
