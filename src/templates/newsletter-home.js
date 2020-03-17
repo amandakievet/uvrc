@@ -4,8 +4,8 @@ import classnames from "classnames";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import ArticleCard from "../components/article-card";
 import NewsletterArticleList from "../components/newsletter-article-list";
+import ArticlesList from "../components/articles-list";
 
 const NewsletterHome = ({ data }) => {
   const { newsletter, articleList } = data;
@@ -42,24 +42,14 @@ const NewsletterHome = ({ data }) => {
           <div className="border-t-2 border-b-2 mt-4 py-3">
             <h4 className="chunkyLabel text-center">Latest Articles</h4>
           </div>
-          <div className="flex flex-wrap max-w-4xl mx-auto px-4 justify-center">
-            {articleList.edges.map(({ node }, index) => (
-              <ArticleCard
-                {...node.data}
-                uid={node.uid}
-                className={classnames("border-b-2", {
-                  "border-r-2": index % 2 === 0 || index === 0
-                })}
-              />
-            ))}
-            {articleList.edges.length % 2 !== 0 && (
-              <ArticleCard
-                className="border-b-2"
-                uid="newsletter-submission-guidelines"
-                headline={{ text: "Submission Guidelines" }}
-                tag="Note from the Editors"
-              />
-            )}
+          <ArticlesList articleList={articleList} />
+          <div className="text-center py-6">
+            <Link
+              to={`/articles`}
+              className="chunkyLabel border-b-2 border-black hover:border-none inline-block mx-auto"
+            >
+              All Articles
+            </Link>
           </div>
         </div>
       </div>
@@ -92,7 +82,7 @@ export const query = graphql`
         }
       }
     }
-    articleList: allPrismicArticle(sort: { fields: data___date }, limit: 10) {
+    articleList: allPrismicArticle(sort: { fields: data___date }, limit: 6) {
       edges {
         node {
           uid

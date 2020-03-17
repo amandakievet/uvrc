@@ -10,6 +10,7 @@ const wrapper = promise =>
 const path = require("path");
 
 const newslettersPerPage = 8;
+const articlesPerPage = 4;
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -119,6 +120,24 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve("src/templates/page.js"),
       context: {
         uid: node.uid
+      }
+    });
+  });
+
+  const numArticleListPages = Math.ceil(
+    pages.data.allPrismicArticle.edges.length / articlesPerPage
+  );
+  Array.from({ length: numArticleListPages }).forEach((_, index) => {
+    createPage({
+      path: index === 0 ? `/articles` : `/articles/${index + 1}`,
+      component: path.resolve("src/templates/articles-list.js"),
+      context: {
+        limit: articlesPerPage,
+        skip: index * articlesPerPage,
+        prev:
+          index === 0 ? null : index === 1 ? `/articles` : `/articles/${index}`,
+        next:
+          index === numArticleListPages - 1 ? null : `/articles/${index + 2}`
       }
     });
   });
