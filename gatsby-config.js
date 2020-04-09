@@ -35,7 +35,14 @@ module.exports = {
       options: {
         repositoryName: `uppervalleyrunningclub`,
         accessToken: `${process.env.PRISMIC_API_KEY}`,
-        linkResolver: ({ node, key, value }) => post => `/${post.uid}`
+        linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
+        schemas: {
+          article: require("./src/schemas/article.json"),
+          home: require("./src/schemas/home.json"),
+          newsletter: require("./src/schemas/newsletter.json"),
+          page: require("./src/schemas/page.json"),
+          people: require("./src/schemas/people.json")
+        }
       }
     },
     {

@@ -136,8 +136,10 @@ export const query = graphql`
                 items {
                   gallery_image {
                     url
-                    Thumbnail {
-                      url
+                    thumbnails {
+                      Thumbnail {
+                        url
+                      }
                     }
                   }
                 }

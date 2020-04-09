@@ -1,0 +1,239 @@
+{
+  "Main": {
+    "date": {
+      "type": "Date",
+      "config": {
+        "label": "Date"
+      }
+    },
+    "newsletter": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["newsletter"],
+        "label": "Newsletter"
+      }
+    },
+    "headline": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Headline"
+      }
+    },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID"
+      }
+    },
+    "tag": {
+      "type": "Select",
+      "config": {
+        "options": [
+          "Letter from a Board Member",
+          "Social Events",
+          "Member Submission",
+          "Ask the Coaches",
+          "Runner Profile"
+        ],
+        "label": "Tag"
+      }
+    },
+    "author": {
+      "type": "Text",
+      "config": {
+        "label": "Author"
+      }
+    },
+    "richtext": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank": true,
+        "label": "Richtext"
+      }
+    },
+    "article_thumbnail": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 168,
+          "height": 168
+        },
+        "thumbnails": [],
+        "label": "Article Thumbnail"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "row_image___text": [],
+          "image_gallery": [],
+          "richtext": [],
+          "fullsize_image": [],
+          "ask_the_coaches": []
+        },
+        "choices": {
+          "row_image___text": {
+            "type": "Slice",
+            "fieldset": "Row Image + Text",
+            "description": "Image on one side, text on the other",
+            "icon": "view_column",
+            "display": "list",
+            "non-repeat": {
+              "image_position": {
+                "type": "Select",
+                "config": {
+                  "options": ["Left", "Right"],
+                  "default_value": "Left",
+                  "label": "Image Position"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 800
+                  },
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "richtext": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Richtext"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "image_gallery": {
+            "type": "Slice",
+            "fieldset": "Image Gallery",
+            "description": "A gallery of images",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "gallery_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": null
+                  },
+                  "thumbnails": [
+                    {
+                      "name": "Thumbnail",
+                      "width": 500,
+                      "height": 500
+                    },
+                    {
+                      "name": "desktop",
+                      "width": 2000,
+                      "height": null
+                    }
+                  ],
+                  "label": "Gallery Image"
+                }
+              }
+            }
+          },
+          "richtext": {
+            "type": "Slice",
+            "fieldset": "Richtext",
+            "description": "A richtext sectoin",
+            "icon": "format_color_text",
+            "display": "list",
+            "non-repeat": {
+              "rich_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "label": "Rich text"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "fullsize_image": {
+            "type": "Slice",
+            "fieldset": "Fullsize Image",
+            "description": "Image in its own row",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 2000
+                  },
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "caption_optional_": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Caption(Optional)"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "ask_the_coaches": {
+            "type": "Slice",
+            "fieldset": "Ask the Coaches",
+            "description": "Special formatting for Ask the Coaches articles",
+            "icon": "question_answer",
+            "display": "list",
+            "non-repeat": {
+              "question": {
+                "type": "Text",
+                "config": {
+                  "label": "Question"
+                }
+              },
+              "question_asker": {
+                "type": "Text",
+                "config": {
+                  "label": "Question Asker"
+                }
+              }
+            },
+            "repeat": {
+              "coach": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "Dorcas DenHartog",
+                    "Carly Wynn",
+                    "Jim Burnett",
+                    "Laura Hagley"
+                  ],
+                  "label": "Coach"
+                }
+              },
+              "answer": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Answer"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

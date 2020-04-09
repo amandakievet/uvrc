@@ -10,7 +10,7 @@ const ImageGallery = ({ items }) => {
         {items.map(({ gallery_image }, index) => (
           <img
             className="w-64 cursor-pointer p-3"
-            src={gallery_image.Thumbnail.url}
+            src={gallery_image.thumbnails.Thumbnail.url}
             onClick={() => setToggler(!toggler)}
             key={index}
           />

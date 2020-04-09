@@ -1,0 +1,132 @@
+{
+  "Main": {
+    "president_name": {
+      "type": "Text",
+      "config": {
+        "label": "President Name"
+      }
+    },
+    "president_email": {
+      "type": "Link",
+      "config": {
+        "label": "President Email"
+      }
+    },
+    "vice_president": {
+      "type": "Text",
+      "config": {
+        "label": "Vice President"
+      }
+    },
+    "vice_president_email": {
+      "type": "Link",
+      "config": {
+        "label": "Vice President Email"
+      }
+    },
+    "treasurer_name": {
+      "type": "Text",
+      "config": {
+        "label": "Treasurer Name"
+      }
+    },
+    "treasurer_email": {
+      "type": "Link",
+      "config": {
+        "label": "Treasurer Email"
+      }
+    },
+    "secretary_name": {
+      "type": "Text",
+      "config": {
+        "label": "Secretary Name"
+      }
+    },
+    "secretary_email": {
+      "type": "Link",
+      "config": {
+        "label": "Secretary Email"
+      }
+    },
+    "board": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "member_name": {
+            "type": "Text",
+            "config": {
+              "label": "Member Name"
+            }
+          }
+        },
+        "label": "Board"
+      }
+    },
+    "coaches": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "profile_picture": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 300,
+                "height": 300
+              },
+              "thumbnails": [],
+              "label": "Profile Picture"
+            }
+          },
+          "name": {
+            "type": "Text",
+            "config": {
+              "label": "Name"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "hyperlink",
+              "allowTargetBlank": true,
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Coaches"
+      }
+    },
+    "newsletter_editors": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "profile_picture": {
+            "type": "Image",
+            "config": {
+              "constraint": {
+                "width": 300,
+                "height": 300
+              },
+              "thumbnails": [],
+              "label": "Profile Picture"
+            }
+          },
+          "name": {
+            "type": "Text",
+            "config": {
+              "label": "Name"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "hyperlink",
+              "allowTargetBlank": true,
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Newsletter Editors"
+      }
+    }
+  }
+}
