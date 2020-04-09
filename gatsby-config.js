@@ -37,6 +37,7 @@ module.exports = {
         accessToken: `${process.env.PRISMIC_API_KEY}`,
         linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
         schemas: {
+          all_pages: require("./src/schemas/all_pages.json"),
           article: require("./src/schemas/article.json"),
           home: require("./src/schemas/home.json"),
           newsletter: require("./src/schemas/newsletter.json"),

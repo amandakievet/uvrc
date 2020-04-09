@@ -1,0 +1,7 @@
+.link a {
+  @apply underline;
+}
+
+.link a:hover {
+  @apply no-underline;
+}

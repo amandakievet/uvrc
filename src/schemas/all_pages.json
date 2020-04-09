@@ -1,0 +1,11 @@
+{
+  "Main": {
+    "announcement": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "strong, em, hyperlink",
+        "label": "Announcement"
+      }
+    }
+  }
+}

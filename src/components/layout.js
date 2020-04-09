@@ -2,10 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import Header from "./header";
+import Announcement from "./announcement";
 
 function Layout({ children }) {
   return (
     <div className="flex flex-col font-sans min-h-screen text-black font-sans">
+      <Announcement />
       <Header />
 
       <main className="flex flex-col flex-1 max-w-6xl mx-auto px-4 py-8 md:p-8 w-full">
