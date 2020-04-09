@@ -22,6 +22,12 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             uid
           }
+          next {
+            uid
+          }
+          previous {
+            uid
+          }
         }
       }
       allPrismicArticle {
@@ -70,6 +76,12 @@ exports.createPages = async ({ graphql, actions }) => {
             author
             content
           }
+          next {
+            slug
+          }
+          previous {
+            slug
+          }
         }
       }
       allPrismicPage {
@@ -83,12 +95,18 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const allPrismicNewsletter = pages.data.allPrismicNewsletter.edges;
+  const wordpressNewsletters = pages.data.wordpressNewsletters.edges;
+
   allPrismicNewsletter.forEach(edge => {
     createPage({
       path: `/${edge.node.uid}`,
       component: path.resolve("src/templates/newsletter.js"),
       context: {
-        uid: edge.node.uid
+        uid: edge.node.uid,
+        next: edge.next
+          ? `/${edge.next.uid}`
+          : `/${wordpressNewsletters[0].node.slug}`,
+        prev: edge.previous && `/${edge.previous.uid}`
       }
     });
   });
@@ -142,13 +160,16 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const wordpressNewsletters = pages.data.wordpressNewsletters.edges;
   wordpressNewsletters.forEach(edge => {
     createPage({
       path: `/${edge.node.slug}`,
       component: path.resolve("src/templates/wp-newsletter.js"),
       context: {
-        id: edge.node.id
+        id: edge.node.id,
+        next: edge.next && `/${edge.next.slug}`,
+        prev: edge.previous
+          ? `/${edge.previous.slug}`
+          : `/${allPrismicNewsletter[allPrismicNewsletter.length - 1].node.uid}`
       }
     });
   });

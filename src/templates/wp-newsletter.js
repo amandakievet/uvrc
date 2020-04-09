@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichText from "../components/richtext";
+import Pagination from "../components/pagination";
 
 const WordpressNewsletterTemplate = ({ data, pageContext }) => {
   const { title, content, date } = data.wordpressPost;
@@ -16,6 +17,9 @@ const WordpressNewsletterTemplate = ({ data, pageContext }) => {
       </div>
       <div>
         <RichText html={content} />
+      </div>
+      <div className="py-6">
+        <Pagination {...pageContext} />
       </div>
     </Layout>
   );

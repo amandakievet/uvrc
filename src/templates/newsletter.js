@@ -7,6 +7,7 @@ import RichText from "../components/richtext";
 import Article from "../components/article";
 import Profile from "../components/profile";
 import PageTitle from "../components/page-title";
+import Pagination from "../components/pagination";
 
 import { articleCompare, embellishTitle } from "../utils/article";
 
@@ -37,7 +38,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
     <Layout>
       <SEO title={title.text} />
       <div className="max-w-6xl mx-auto border-b-2 pb-10">
-        <PageTitle text={title.text} />
+        <PageTitle title={title.text} />
         <div className="flex">
           <div className="mr-8">
             <h2 className="chunkyLabel pb-4">Note from the Editor</h2>
@@ -56,11 +57,14 @@ const NewsletterTemplate = ({ data, pageContext }) => {
       </div>
       <div>
         {articles.map(({ node }, index) => (
-          <>
+          <div key={index}>
             <a name={index + 1} />
             <Article {...node.data} key={index} className="border-b-2 py-4" />
-          </>
+          </div>
         ))}
+      </div>
+      <div className="py-6">
+        <Pagination {...pageContext} />
       </div>
     </Layout>
   );
