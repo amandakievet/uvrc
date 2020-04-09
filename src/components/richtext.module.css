@@ -45,6 +45,10 @@
   @apply text-base;
 }
 
+.rt li {
+  @apply pb-2;
+}
+
 @screen md {
   .rt h1 {
     @apply text-4xl;

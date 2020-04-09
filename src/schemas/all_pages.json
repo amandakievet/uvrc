@@ -6,6 +6,13 @@
         "multi": "strong, em, hyperlink",
         "label": "Announcement"
       }
+    },
+    "club_address": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "Club Address"
+      }
     }
   }
 }
