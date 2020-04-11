@@ -82,6 +82,9 @@ export const query = graphql`
               }
             }
           }
+          ... on PrismicPageBodyBoardsCommittees {
+            slice_type
+          }
         }
       }
     }

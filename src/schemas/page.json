@@ -24,7 +24,10 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": {},
+        "labels": {
+          "boards___committees": [],
+          "next_meetups": []
+        },
         "choices": {
           "50_50": {
             "type": "Slice",
@@ -96,6 +99,24 @@
                 }
               }
             }
+          },
+          "boards___committees": {
+            "type": "Slice",
+            "fieldset": "Boards & Committees",
+            "description": "A generated list of people on UVRC Boards and Committees",
+            "icon": "people_outline",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {}
+          },
+          "next_meetups": {
+            "type": "Slice",
+            "fieldset": "Next Meetups",
+            "description": "The next UVRC meetups happening",
+            "icon": "event",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {}
           }
         }
       }

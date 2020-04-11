@@ -6,6 +6,7 @@ import RichText from "../richtext";
 import AskTheCoaches from "../ask-the-coaches";
 import FiftyFiftySlice from "./fifty-fifty";
 import MultiColumnTextSlice from "./multi-column-text";
+import CommitteesSlice from "./committees";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
@@ -34,6 +35,7 @@ const Slice = ({ slice_type, primary, items, display }) => (
     {slice_type === "multi-column_text" && (
       <MultiColumnTextSlice items={items} />
     )}
+    {slice_type === "boards___committees" && <CommitteesSlice />}
   </>
 );
 
