@@ -19,8 +19,8 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
         <div className="flex flex-wrap">
           {data.allPrismicNewsletter.edges.map(({ node }, index) => {
             const { title, month } = node.data;
-            const articles = data.newsletterArticles.edges.filter(
-              article => article.node.data.newsletter.uid === node.uid
+            const articles = node.data.articles.map(
+              articleNode => articleNode.article.document.data
             );
             return (
               <Link
@@ -54,11 +54,7 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
 export default NewsletterListTemplate;
 
 export const query = graphql`
-  query prismicNewsletterListQuery(
-    $skip: Int!
-    $limit: Int!
-    $uids: [String!]
-  ) {
+  query prismicNewsletterListQuery($skip: Int!, $limit: Int!) {
     allPrismicNewsletter(
       sort: { fields: data___month, order: DESC }
       limit: $limit
@@ -71,26 +67,23 @@ export const query = graphql`
               text
             }
             month
+            articles {
+              article {
+                document {
+                  ... on PrismicArticle {
+                    data {
+                      headline {
+                        text
+                      }
+                      tag
+                      author
+                    }
+                  }
+                }
+              }
+            }
           }
           uid
-        }
-      }
-    }
-    newsletterArticles: allPrismicArticle(
-      filter: { data: { newsletter: { uid: { in: $uids } } } }
-    ) {
-      edges {
-        node {
-          data {
-            headline {
-              text
-            }
-            tag
-            author
-            newsletter {
-              uid
-            }
-          }
         }
       }
     }

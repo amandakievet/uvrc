@@ -37,9 +37,6 @@ export const query = graphql`
             }
             tag
             author
-            newsletter {
-              uid
-            }
             article_thumbnail {
               url
             }

@@ -9,7 +9,9 @@ import ArticlesList from "../components/articles-list";
 
 const NewsletterHome = ({ data }) => {
   const { newsletter, articleList } = data;
-  let newsletterArticles = data.newsletterArticles.edges;
+  const newsletterArticles = newsletter.data.articles.map(
+    articleNode => articleNode.article.document.data
+  );
 
   return (
     <Layout>
@@ -64,23 +66,23 @@ export const query = graphql`
         title {
           text
         }
-      }
-      uid
-    }
-    newsletterArticles: allPrismicArticle(
-      filter: { data: { newsletter: { uid: { eq: $uid } } } }
-    ) {
-      edges {
-        node {
-          data {
-            headline {
-              text
+        articles {
+          article {
+            document {
+              ... on PrismicArticle {
+                data {
+                  headline {
+                    text
+                  }
+                  tag
+                  author
+                }
+              }
             }
-            tag
-            author
           }
         }
       }
+      uid
     }
     articleList: allPrismicArticle(sort: { fields: data___date }, limit: 6) {
       edges {

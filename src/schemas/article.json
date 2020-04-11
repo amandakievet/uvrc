@@ -6,14 +6,6 @@
         "label": "Date"
       }
     },
-    "newsletter": {
-      "type": "Link",
-      "config": {
-        "select": "document",
-        "customtypes": ["newsletter"],
-        "label": "Newsletter"
-      }
-    },
     "headline": {
       "type": "StructuredText",
       "config": {

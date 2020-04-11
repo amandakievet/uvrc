@@ -9,7 +9,7 @@ import Profile from "../components/profile";
 import PageTitle from "../components/page-title";
 import Pagination from "../components/pagination";
 
-import { articleCompare, embellishTitle } from "../utils/article";
+import { embellishTitle } from "../utils/article";
 
 const TableOfContentsLink = ({ author, headline, tag, index }) => (
   <li className="pb-2">
@@ -25,15 +25,14 @@ const NewsletterTemplate = ({ data, pageContext }) => {
     title,
     note_from_the_editor,
     month,
-    editor
+    editor,
+    articles
   } = data.prismicNewsletter.data;
   const { newsletter_editors } = data.prismicPeople.data;
   const currentEditor = newsletter_editors.filter(e => e.name === editor)[0];
-
-  let articles = data.allPrismicArticle.edges;
-
-  articles.sort(articleCompare);
-
+  const articleData = articles.map(
+    articleNode => articleNode.article.document.data
+  );
   return (
     <Layout>
       <SEO title={title.text} />
@@ -48,18 +47,22 @@ const NewsletterTemplate = ({ data, pageContext }) => {
           <div>
             <h2 className="chunkyLabel pb-4">Table of Contents</h2>
             <ul>
-              {articles.map(({ node }, index) => (
-                <TableOfContentsLink {...node.data} key={index} index={index} />
+              {articleData.map((articleNode, index) => (
+                <TableOfContentsLink
+                  {...articleNode}
+                  key={index}
+                  index={index}
+                />
               ))}
             </ul>
           </div>
         </div>
       </div>
       <div>
-        {articles.map(({ node }, index) => (
+        {articleData.map((articleNode, index) => (
           <div key={index}>
             <a name={index + 1} />
-            <Article {...node.data} key={index} className="border-b-2 py-4" />
+            <Article {...articleNode} key={index} className="border-b-2 py-4" />
           </div>
         ))}
       </div>
@@ -82,6 +85,80 @@ export const query = graphql`
         }
         month
         editor
+        articles {
+          article {
+            document {
+              ... on PrismicArticle {
+                data {
+                  headline {
+                    text
+                  }
+                  author
+                  tag
+                  richtext {
+                    html
+                  }
+                  body {
+                    ... on PrismicArticleBodyAskTheCoaches {
+                      slice_type
+                      primary {
+                        question
+                        question_asker
+                      }
+                      items {
+                        answer {
+                          html
+                        }
+                        coach
+                      }
+                    }
+                    ... on PrismicArticleBodyFullsizeImage {
+                      slice_type
+                      primary {
+                        image {
+                          url
+                        }
+                      }
+                    }
+                    ... on PrismicArticleBodyImageGallery {
+                      slice_type
+                      items {
+                        gallery_image {
+                          url
+                          thumbnails {
+                            Thumbnail {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                    ... on PrismicArticleBodyRichtext {
+                      slice_type
+                      primary {
+                        rich_text {
+                          html
+                        }
+                      }
+                    }
+                    ... on PrismicArticleBodyRowImageText {
+                      slice_type
+                      primary {
+                        image {
+                          url
+                        }
+                        image_position
+                        richtext {
+                          html
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
     prismicPeople {
@@ -93,78 +170,6 @@ export const query = graphql`
           }
           profile_picture {
             url
-          }
-        }
-      }
-    }
-    allPrismicArticle(filter: { data: { newsletter: { uid: { eq: $uid } } } }) {
-      edges {
-        node {
-          data {
-            headline {
-              text
-            }
-            author
-            tag
-            richtext {
-              html
-            }
-            body {
-              ... on PrismicArticleBodyAskTheCoaches {
-                slice_type
-                primary {
-                  question
-                  question_asker
-                }
-                items {
-                  answer {
-                    html
-                  }
-                  coach
-                }
-              }
-              ... on PrismicArticleBodyFullsizeImage {
-                slice_type
-                primary {
-                  image {
-                    url
-                  }
-                }
-              }
-              ... on PrismicArticleBodyImageGallery {
-                slice_type
-                items {
-                  gallery_image {
-                    url
-                    thumbnails {
-                      Thumbnail {
-                        url
-                      }
-                    }
-                  }
-                }
-              }
-              ... on PrismicArticleBodyRichtext {
-                slice_type
-                primary {
-                  rich_text {
-                    html
-                  }
-                }
-              }
-              ... on PrismicArticleBodyRowImageText {
-                slice_type
-                primary {
-                  image {
-                    url
-                  }
-                  image_position
-                  richtext {
-                    html
-                  }
-                }
-              }
-            }
           }
         }
       }

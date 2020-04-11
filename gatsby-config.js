@@ -21,6 +21,8 @@ module.exports = {
         display: `minimal-ui`
       }
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-plugin-purgecss`,

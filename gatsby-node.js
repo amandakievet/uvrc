@@ -187,20 +187,15 @@ exports.createPages = async ({ graphql, actions }) => {
     const source =
       index + 1 <= numPrismicNewsletterListPages ? "prismic" : "wordpress";
 
-    let component, uids, skip;
+    let component, skip;
 
     if (source === "prismic") {
       component = path.resolve("src/templates/newsletter-list.js");
       const firstItemIndex = index * newslettersPerPage;
       const lastItemIndex = firstItemIndex + newslettersPerPage - 1;
-      uids = allPrismicNewsletter
-        .slice(firstItemIndex, lastItemIndex)
-        .map(newsletter => newsletter.node.uid);
-
       skip = index * newslettersPerPage;
     } else if (source === "wordpress") {
       component = path.resolve("src/templates/wp-newsletter-list.js");
-      uids = [];
       skip = (index - numPrismicNewsletterListPages) * newslettersPerPage;
     }
 
@@ -211,7 +206,6 @@ exports.createPages = async ({ graphql, actions }) => {
         limit: newslettersPerPage,
         skip,
         numPostsPerPage: newslettersPerPage,
-        uids,
         prev:
           index === 0
             ? null
