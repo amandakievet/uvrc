@@ -32,7 +32,7 @@ const Slice = ({ slice_type, primary, items, display }) => (
     {slice_type === "image_gallery" && <ImageGallery items={items} />}
     {slice_type === "50_50" && <FiftyFiftySlice {...primary} />}
     {slice_type === "multi-column_text" && (
-      <MultiColumnTextSlice {...primary} items={items} />
+      <MultiColumnTextSlice items={items} />
     )}
   </>
 );

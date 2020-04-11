@@ -18,7 +18,7 @@ const PageTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={meta_title} description={meta_description} />
+      <SEO title={meta_title || title.text} description={meta_description} />
       <div className="my-10">
         <div className="max-w-3xl mx-auto">
           <PageTitle title={title.text} />
@@ -76,9 +76,6 @@ export const query = graphql`
           }
           ... on PrismicPageBodyMultiColumnText {
             slice_type
-            primary {
-              number_of_columns
-            }
             items {
               richtext {
                 html

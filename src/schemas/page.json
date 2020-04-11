@@ -85,16 +85,7 @@
             "description": "Text in multiple columns",
             "icon": "view_column",
             "display": "list",
-            "non-repeat": {
-              "number_of_columns": {
-                "type": "Select",
-                "config": {
-                  "options": ["2", "3", "4"],
-                  "default_value": "2",
-                  "label": "Number of Columns"
-                }
-              }
-            },
+            "non-repeat": {},
             "repeat": {
               "richtext": {
                 "type": "StructuredText",

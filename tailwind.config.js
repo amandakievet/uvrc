@@ -28,6 +28,10 @@ module.exports = {
           default: "#999999"
         }
       }
+    },
+    minWidth: {
+      xs: "20rem",
+      sm: "24rem"
     }
   },
   variants: {
