@@ -13,7 +13,7 @@ const ArticleCard = ({
 }) => (
   <Link
     to={`/${uid}`}
-    className={`p-3 w-full max-w-sm block flex justify-between ${className}`}
+    className={`p-3 w-full md:w-1/2 block flex justify-between ${className}`}
   >
     <div className="w-full">
       {tag && (
@@ -25,7 +25,9 @@ const ArticleCard = ({
       <div className="text-xs w-full flex justify-between font-display leading-tight">
         {author && <p>By {author}</p>}
         {date && (
-          <p className="text-gray-500">{moment(date).format("MMMM Do YYYY")}</p>
+          <p className="text-gray-500 ml-auto">
+            {moment(date).format("MMMM Do YYYY")}
+          </p>
         )}
       </div>
     </div>

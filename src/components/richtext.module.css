@@ -42,7 +42,7 @@
   @apply text-lg;
 }
 .rt h5 {
-  @apply text-base;
+  @apply text-base uppercase tracking-wider;
 }
 
 .rt li {

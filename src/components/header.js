@@ -17,7 +17,7 @@ function Header() {
 
   return (
     <header className="bg-white">
-      <div className="flex flex-wrap items-center justify-between md:justify-center lg:justify-between p-4 border-b">
+      <div className="flex flex-wrap items-center justify-between md:justify-center lg:justify-between p-4 md:px-8 border-b">
         <Link className="flex items-center no-underline" to="/">
           <img
             src={stackedLogo}

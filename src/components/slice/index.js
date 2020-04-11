@@ -7,6 +7,7 @@ import AskTheCoaches from "../ask-the-coaches";
 import FiftyFiftySlice from "./fifty-fifty";
 import MultiColumnTextSlice from "./multi-column-text";
 import CommitteesSlice from "./committees";
+import UpcomingEvents from "../upcoming-events";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
@@ -36,6 +37,11 @@ const Slice = ({ slice_type, primary, items, display }) => (
       <MultiColumnTextSlice items={items} />
     )}
     {slice_type === "boards___committees" && <CommitteesSlice />}
+    {slice_type === "next_meetups" && (
+      <div className="max-w-6xl mx-auto">
+        <UpcomingEvents />
+      </div>
+    )}
   </>
 );
 

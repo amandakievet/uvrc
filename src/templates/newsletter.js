@@ -36,7 +36,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={title.text} />
-      <div className="max-w-6xl mx-auto border-b-2 pb-10">
+      <div className="max-w-6xl mx-auto border-b-2 pb-10 py-10">
         <PageTitle title={title.text} />
         <div className="flex">
           <div className="mr-8">
@@ -58,16 +58,16 @@ const NewsletterTemplate = ({ data, pageContext }) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="max-w-4xl mx-auto">
         {articleData.map((articleNode, index) => (
           <div key={index}>
             <a name={index + 1} />
             <Article {...articleNode} key={index} className="border-b-2 py-4" />
           </div>
         ))}
-      </div>
-      <div className="py-6">
-        <Pagination {...pageContext} />
+        <div className="py-6">
+          <Pagination {...pageContext} />
+        </div>
       </div>
     </Layout>
   );

@@ -12,17 +12,15 @@ const WordpressNewsletterTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={title} />
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl w-full my-10 mx-auto">
         <RichText
           html={title}
           className="text-5xl text-center mb-10 font-display"
         />
-      </div>
-      <div>
         <RichText html={content} />
-      </div>
-      <div className="py-6">
-        <Pagination {...pageContext} />
+        <div className="py-6">
+          <Pagination {...pageContext} />
+        </div>
       </div>
     </Layout>
   );

@@ -11,7 +11,7 @@ const ArticlesList = ({ articleList }) => (
         uid={node.uid}
         key={index}
         className={classnames("border-b-2", {
-          "border-r-2": index % 2 === 0 || index === 0
+          "md:border-r-2": index % 2 === 0 || index === 0
         })}
       />
     ))}

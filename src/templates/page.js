@@ -22,7 +22,7 @@ const PageTemplate = ({ data }) => {
       <div className="my-10">
         <div className="max-w-3xl mx-auto">
           <PageTitle title={title.text} />
-          <RichText html={page_content.html} />
+          <RichText html={page_content.html} className="px-4" />
         </div>
         {body.map((slice, index) => (
           <Slice {...slice} key={index} />
@@ -83,6 +83,9 @@ export const query = graphql`
             }
           }
           ... on PrismicPageBodyBoardsCommittees {
+            slice_type
+          }
+          ... on PrismicPageBodyNextMeetups {
             slice_type
           }
         }
