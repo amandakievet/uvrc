@@ -13,9 +13,10 @@ const IndexPage = ({ data }) => {
         keywords={[`uvrc`, `upper valley running club`, `running`]}
         title="Home"
       />
-
-      <h1 className="text-5xl">{headline.text}</h1>
-      <UpcomingEvents />
+      <div className="max-w-6xl mx-auto px-4 my-10">
+        <h1 className="text-5xl">{headline.text}</h1>
+        <UpcomingEvents />
+      </div>
     </Layout>
   );
 };

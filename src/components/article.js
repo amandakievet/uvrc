@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import RichText from "./richtext";
-import Slice from "./slice";
+import Slice from "./slice/index";
 
 const BoldHeader = ({ headline, author, tag }) => (
   <div className="mb-8 text-center">

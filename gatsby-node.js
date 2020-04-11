@@ -84,6 +84,25 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      wordpressMeetings: allWordpressPost(
+        filter: { categories: { elemMatch: { name: { eq: "Meetings" } } } }
+      ) {
+        edges {
+          node {
+            id
+            title
+            slug
+            author
+            content
+          }
+          next {
+            slug
+          }
+          previous {
+            slug
+          }
+        }
+      }
       allPrismicPage {
         edges {
           node {
@@ -96,6 +115,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const allPrismicNewsletter = pages.data.allPrismicNewsletter.edges;
   const wordpressNewsletters = pages.data.wordpressNewsletters.edges;
+  const wordpressMeetings = pages.data.wordpressMeetings.edges;
 
   allPrismicNewsletter.forEach(edge => {
     createPage({
@@ -163,7 +183,7 @@ exports.createPages = async ({ graphql, actions }) => {
   wordpressNewsletters.forEach(edge => {
     createPage({
       path: `/${edge.node.slug}`,
-      component: path.resolve("src/templates/wp-newsletter.js"),
+      component: path.resolve("src/templates/wp-post.js"),
       context: {
         id: edge.node.id,
         next: edge.next && `/${edge.next.slug}`,
@@ -216,6 +236,20 @@ exports.createPages = async ({ graphql, actions }) => {
           index === numNewsletterListPages - 1
             ? null
             : `/all-newsletters/${index + 2}`
+      }
+    });
+  });
+
+  wordpressMeetings.forEach(edge => {
+    createPage({
+      path: `/${edge.node.slug}`,
+      component: path.resolve("src/templates/wp-post.js"),
+      context: {
+        id: edge.node.id,
+        next: edge.next && `/${edge.next.slug}`,
+        prev: edge.previous
+          ? `/${edge.previous.slug}`
+          : `/${allPrismicNewsletter[allPrismicNewsletter.length - 1].node.uid}`
       }
     });
   });

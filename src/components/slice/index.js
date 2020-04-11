@@ -1,9 +1,11 @@
 import React from "react";
 import classnames from "classnames";
 
-import ImageGallery from "./image-gallery";
-import RichText from "./richtext";
-import AskTheCoaches from "./ask-the-coaches";
+import ImageGallery from "../image-gallery";
+import RichText from "../richtext";
+import AskTheCoaches from "../ask-the-coaches";
+import FiftyFiftySlice from "./fifty-fifty";
+import MultiColumnTextSlice from "./multi-column-text";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
@@ -28,6 +30,10 @@ const Slice = ({ slice_type, primary, items, display }) => (
       />
     )}
     {slice_type === "image_gallery" && <ImageGallery items={items} />}
+    {slice_type === "50_50" && <FiftyFiftySlice {...primary} />}
+    {slice_type === "multi-column_text" && (
+      <MultiColumnTextSlice {...primary} items={items} />
+    )}
   </>
 );
 

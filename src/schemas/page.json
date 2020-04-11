@@ -19,6 +19,95 @@
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
         "label": "Page Content"
       }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {},
+        "choices": {
+          "50_50": {
+            "type": "Slice",
+            "fieldset": "50/50",
+            "description": "Image and Text",
+            "icon": "view_column",
+            "display": "list",
+            "non-repeat": {
+              "header": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "Header"
+                }
+              },
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Text"
+                }
+              },
+              "cta_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Cta Text"
+                }
+              },
+              "cta_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Cta Link"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "text_placement": {
+                "type": "Select",
+                "config": {
+                  "options": ["right", "left"],
+                  "default_value": "right",
+                  "label": "Text Placement"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "multi-column_text": {
+            "type": "Slice",
+            "fieldset": "Multi-Column Text",
+            "description": "Text in multiple columns",
+            "icon": "view_column",
+            "display": "list",
+            "non-repeat": {
+              "number_of_columns": {
+                "type": "Select",
+                "config": {
+                  "options": ["2", "3", "4"],
+                  "default_value": "2",
+                  "label": "Number of Columns"
+                }
+              }
+            },
+            "repeat": {
+              "richtext": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Richtext"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "SEO": {

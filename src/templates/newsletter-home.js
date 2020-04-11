@@ -19,7 +19,7 @@ const NewsletterHome = ({ data }) => {
         keywords={[`uvrc`, `upper valley running club`, `running`]}
         title="Newsletter Home"
       />
-      <div>
+      <div className="my-10 max-w-6xl mx-auto px-4">
         <div className="max-w-2xl mx-auto px-4 text-center mb-16">
           <h1 className="text-4xl mb-2">{newsletter.data.title.text}</h1>
           <div className="text-sm">

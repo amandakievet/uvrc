@@ -46,7 +46,7 @@
 }
 
 .rt li {
-  @apply pb-2;
+  @apply pb-3;
 }
 
 @screen md {
