@@ -16,7 +16,6 @@
     "gatsby-plugin-sharp": "^2.5.4",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-images-contentful": "^2.2.2",
-    "gatsby-source-contentful": "^2.2.7",
     "gatsby-source-meetup": "^1.1.0",
     "gatsby-source-prismic": "^3.0.0",
     "gatsby-source-wordpress": "^3.1.66",
