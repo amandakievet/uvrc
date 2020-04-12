@@ -154,7 +154,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   pages.data.allPrismicPage.edges.forEach(({ node }) => {
     createPage({
-      path: `/${node.uid}`,
+      path: node.uid === "home" ? `/` : `/${node.uid}`,
       component: path.resolve("src/templates/page.js"),
       context: {
         uid: node.uid

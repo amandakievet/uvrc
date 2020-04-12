@@ -48,7 +48,6 @@ module.exports = {
         schemas: {
           all_pages: require("./src/schemas/all_pages.json"),
           article: require("./src/schemas/article.json"),
-          home: require("./src/schemas/home.json"),
           newsletter: require("./src/schemas/newsletter.json"),
           page: require("./src/schemas/page.json"),
           people: require("./src/schemas/people.json")

@@ -13,15 +13,16 @@ const PageTemplate = ({ data }) => {
     meta_description,
     title,
     page_content,
+    display_title_,
     body
   } = data.prismicPage.data;
 
   return (
     <Layout>
       <SEO title={meta_title || title.text} description={meta_description} />
-      <div className="my-10">
+      <div className="mb-10">
         <div className="max-w-3xl mx-auto">
-          <PageTitle title={title.text} />
+          {display_title_ && <PageTitle title={title.text} className="mt-10" />}
           <RichText html={page_content.html} className="px-4" />
         </div>
         {body.map((slice, index) => (
@@ -41,6 +42,7 @@ export const query = graphql`
         title {
           text
         }
+        display_title_
         page_content {
           html
         }
@@ -49,6 +51,7 @@ export const query = graphql`
         body {
           ... on PrismicPageBody5050 {
             primary {
+              text_align
               text_placement
               header {
                 html

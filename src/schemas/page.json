@@ -13,6 +13,13 @@
         "label": "Title"
       }
     },
+    "display_title_": {
+      "type": "Boolean",
+      "config": {
+        "default_value": true,
+        "label": "Display title?"
+      }
+    },
     "page_content": {
       "type": "StructuredText",
       "config": {
@@ -78,6 +85,13 @@
                   "default_value": "right",
                   "label": "Text Placement"
                 }
+              },
+              "text_align": {
+                "type": "Select",
+                "config": {
+                  "options": ["center", "right", "left"],
+                  "label": "Text Align"
+                }
               }
             },
             "repeat": {}
@@ -115,7 +129,15 @@
             "description": "The next UVRC meetups happening",
             "icon": "event",
             "display": "list",
-            "non-repeat": {},
+            "non-repeat": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "Title"
+                }
+              }
+            },
             "repeat": {}
           }
         }

@@ -18,6 +18,7 @@ FiftyFiftyLink.propTypes = {
 };
 
 const FiftyFiftySlice = ({
+  text_align,
   text_placement,
   header,
   text,
@@ -27,15 +28,21 @@ const FiftyFiftySlice = ({
 }) => (
   <div
     className={classnames("flex flex-col", {
-      "md:flex-row-reverse": text_placement === "right",
-      "md:flex-row": text_placement === "left"
+      "md:flex-row-reverse": text_placement === "left",
+      "md:flex-row": text_placement === "right"
     })}
   >
     <Img fluid={image.fluid} className="md:w-1/2" />
     <div className="md:w-1/2 flex items-center justify-center p-4">
-      <div className="text-center">
+      <div
+        className={classnames("max-w-sm mx-auto", {
+          "text-center": text_align === "center",
+          "text-left": text_align === "left",
+          "text-right": text_align === "right"
+        })}
+      >
         <RichText html={header.html} />
-        <RichText html={text.html} className="max-w-xs" />
+        <RichText html={text.html} />
         {cta_text && <FiftyFiftyLink cta_text={cta_text} cta_link={cta_link} />}
       </div>
     </div>
