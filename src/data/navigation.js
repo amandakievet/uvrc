@@ -1,22 +1,22 @@
 export default [
   {
-    route: "/about",
+    route: "/about/",
     title: "About"
   },
   {
-    route: "/training",
+    route: "/training/",
     title: "Training"
   },
   {
-    route: "/racing",
+    route: "/racing/",
     title: "Racing"
   },
   {
-    route: "/newsletter",
+    route: "/newsletter/",
     title: "Newsletter"
   },
   {
-    route: "/contact",
+    route: "/contact/",
     title: "Contact"
   }
 ];

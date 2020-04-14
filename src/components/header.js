@@ -54,7 +54,10 @@ function Header() {
               {link.title}
             </Link>
           ))}
-          <Link to="/" className="btn-primary md:ml-8 block mt-4 md:mt-0">
+          <Link
+            to="/membership/"
+            className="btn-primary md:ml-8 block mt-4 md:mt-0"
+          >
             Join us
           </Link>
         </nav>

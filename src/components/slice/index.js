@@ -25,8 +25,11 @@ const Slice = ({ slice_type, primary, items, display }) => (
     )}
     {slice_type === "richtext" && (
       <RichText
-        html={primary.rich_text.html}
-        className={classnames("max-w-3xl", {
+        html={
+          (primary.richtext && primary.richtext.html) ||
+          (primary.rich_text && primary.rich_text.html)
+        }
+        className={classnames("max-w-3xl mx-auto my-8", {
           "mx-auto": display === "bold"
         })}
       />
@@ -38,7 +41,12 @@ const Slice = ({ slice_type, primary, items, display }) => (
     )}
     {slice_type === "boards___committees" && <CommitteesSlice />}
     {slice_type === "next_meetups" && (
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto my-8">
+        {primary.title && (
+          <h4 className="chunkyLabel text-xl text-center">
+            {primary.title.text}
+          </h4>
+        )}
         <UpcomingEvents />
       </div>
     )}
