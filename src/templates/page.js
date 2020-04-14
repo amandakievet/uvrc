@@ -21,14 +21,23 @@ const PageTemplate = ({ data }) => {
     <Layout>
       <SEO title={meta_title || title.text} description={meta_description} />
       <div className="mb-10">
-        <div className="max-w-4xl mx-auto my-8">
-          {display_title_ && <PageTitle title={title.text} className="mt-10" />}
-          <RichText
-            html={page_content.html}
-            className="px-4"
-            className="text-center"
-          />
-        </div>
+        {(display_title_ || page_content.html) && (
+          <div className="my-8">
+            {display_title_ && (
+              <PageTitle
+                title={title.text}
+                className="mt-10 max-w-4xl mx-auto"
+              />
+            )}
+            {page_content.html && (
+              <RichText
+                html={page_content.html}
+                className="text-center max-w-4xl mx-auto"
+              />
+            )}
+          </div>
+        )}
+
         {body.map((slice, index) => (
           <Slice {...slice} key={index} />
         ))}

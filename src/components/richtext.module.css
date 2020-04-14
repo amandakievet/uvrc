@@ -45,6 +45,10 @@
   @apply text-base uppercase tracking-wider;
 }
 
+.rt ul {
+  @apply list-disc ml-6;
+}
+
 .rt li {
   @apply pb-4 leading-tight;
 }

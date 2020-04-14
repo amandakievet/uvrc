@@ -35,7 +35,7 @@ const FiftyFiftySlice = ({
     <Img fluid={image.fluid} className="md:w-1/2" />
     <div className="md:w-1/2 flex items-center justify-center p-4">
       <div
-        className={classnames("max-w-sm mx-auto", {
+        className={classnames("max-w-md mx-auto", {
           "text-center": text_align === "center",
           "text-left": text_align === "left",
           "text-right": text_align === "right"
