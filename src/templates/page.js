@@ -23,12 +23,7 @@ const PageTemplate = ({ data }) => {
       <div className="mb-10">
         {(display_title_ || page_content.html) && (
           <div className="my-8">
-            {display_title_ && (
-              <PageTitle
-                title={title.text}
-                className="mt-10 max-w-4xl mx-auto"
-              />
-            )}
+            {display_title_ && <PageTitle title={title.text} />}
             {page_content.html && (
               <RichText
                 html={page_content.html}

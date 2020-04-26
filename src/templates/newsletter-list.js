@@ -14,7 +14,7 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="All Newsletters" />
-      <PageTitle title="All Newsletters (from Prismic)" />
+      <PageTitle title="All Newsletters" />
       <div className="max-w-5xl mx-auto px-4 w-full">
         <div className="flex flex-wrap">
           {data.allPrismicNewsletter.edges.map(({ node }, index) => {
@@ -41,10 +41,6 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
             );
           })}
         </div>
-        {data.allPrismicNewsletter.edges.length <
-          pageContext.numPostsPerPage && (
-          <div>We've run out of new Prismic articles</div>
-        )}
         <Pagination {...pageContext} />
       </div>
     </Layout>

@@ -14,7 +14,7 @@ const ArticleListTemplate = ({ data, pageContext }) => {
     <Layout>
       <SEO title="All Articles" />
       <div className="my-8">
-        <PageTitle title="Articles" className="mt-10" />
+        <PageTitle title="Articles" />
         <div className="max-w-4xl mx-auto">
           <ArticlesList articleList={data.allPrismicArticle} />
           <Pagination {...pageContext} />
