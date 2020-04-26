@@ -34,7 +34,8 @@
         "labels": {
           "boards___committees": [],
           "next_meetups": [],
-          "link_blocks": []
+          "link_blocks": [],
+          "race_list": []
         },
         "choices": {
           "50_50": {
@@ -82,10 +83,7 @@
               "text_placement": {
                 "type": "Select",
                 "config": {
-                  "options": [
-                    "right",
-                    "left"
-                  ],
+                  "options": ["right", "left"],
                   "default_value": "right",
                   "label": "Text Placement"
                 }
@@ -93,11 +91,7 @@
               "text_align": {
                 "type": "Select",
                 "config": {
-                  "options": [
-                    "center",
-                    "right",
-                    "left"
-                  ],
+                  "options": ["center", "right", "left"],
                   "label": "Text Align"
                 }
               }
@@ -192,6 +186,47 @@
                 "type": "Link",
                 "config": {
                   "label": "Block Link"
+                }
+              }
+            }
+          },
+          "race_list": {
+            "type": "Slice",
+            "fieldset": "Race List",
+            "description": "A list of races",
+            "icon": "list",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "race_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Race Title"
+                }
+              },
+              "race_location": {
+                "type": "Text",
+                "config": {
+                  "label": "Race Location"
+                }
+              },
+              "race_date": {
+                "type": "Date",
+                "config": {
+                  "label": "Race Date"
+                }
+              },
+              "distance": {
+                "type": "Text",
+                "config": {
+                  "label": "Distance"
+                }
+              },
+              "race_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Race Link",
+                  "allowTargetBlank": true
                 }
               }
             }

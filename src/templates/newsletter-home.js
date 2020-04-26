@@ -41,8 +41,8 @@ const NewsletterHome = ({ data }) => {
           </div>
         </div>
         <div>
-          <div className="border-t-2 border-b-2 mt-4 py-3">
-            <h4 className="chunkyLabel text-center">Latest Articles</h4>
+          <div className="my-4">
+            <h4 className="chunkyLabel text-center text-xl">Latest Articles</h4>
           </div>
           <ArticlesList articleList={articleList} />
           <div className="text-center py-6">

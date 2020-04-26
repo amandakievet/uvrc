@@ -26,7 +26,7 @@
 
 .rt h4,
 .rt h5 {
-  @apply mb-2 mt-4;
+  @apply my-4;
 }
 
 .rt h1 {
@@ -46,11 +46,11 @@
 }
 
 .rt ul {
-  @apply list-disc ml-6;
+  @apply list-disc ml-4;
 }
 
 .rt li {
-  @apply pb-4 leading-tight;
+  @apply pb-4 leading-snug;
 }
 
 @screen md {

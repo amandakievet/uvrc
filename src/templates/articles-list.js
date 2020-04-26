@@ -13,13 +13,13 @@ const ArticleListTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="All Articles" />
-      <div>
-        <div className="border-b-2 mt-4">
-          <PageTitle title="Articles" />
+      <div className="my-8">
+        <PageTitle title="Articles" className="mt-10" />
+        <div className="max-w-4xl mx-auto">
+          <ArticlesList articleList={data.allPrismicArticle} />
+          <Pagination {...pageContext} />
         </div>
-        <ArticlesList articleList={data.allPrismicArticle} />
       </div>
-      <Pagination {...pageContext} />
     </Layout>
   );
 };

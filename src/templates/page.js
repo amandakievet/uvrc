@@ -32,7 +32,7 @@ const PageTemplate = ({ data }) => {
             {page_content.html && (
               <RichText
                 html={page_content.html}
-                className="text-center max-w-4xl mx-auto"
+                className="text-center max-w-3xl mx-auto"
               />
             )}
           </div>
@@ -124,6 +124,19 @@ export const query = graphql`
               block_link {
                 url
               }
+            }
+          }
+          ... on PrismicPageBodyRaceList {
+            slice_type
+            items {
+              race_title
+              race_location
+              race_link {
+                url
+                target
+              }
+              race_date
+              distance
             }
           }
         }

@@ -13,7 +13,7 @@ const ArticleCard = ({
 }) => (
   <Link
     to={`/${uid}`}
-    className={`p-3 w-full md:w-1/2 block flex justify-between ${className}`}
+    className={`block flex justify-between border p-4 ${className}`}
   >
     <div className="w-full">
       {tag && (

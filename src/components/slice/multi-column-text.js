@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import RichText from "../richtext";
 
 const MultiColumnTextSlice = ({ items }) => (
-  <div className="flex flex-wrap max-w-6xl mx-auto my-10">
+  <div className="flex flex-wrap max-w-6xl mx-auto my-10 justify-center">
     {items.map(({ richtext }, index) => (
       <RichText
-        className="flex-1 px-4 min-w-xs pb-8"
+        className="flex-1 px-4 min-w-xs pb-8 max-w-sm"
         html={richtext.html}
         key={index}
       />

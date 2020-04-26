@@ -9,10 +9,12 @@ import MultiColumnTextSlice from "./multi-column-text";
 import CommitteesSlice from "./committees";
 import UpcomingEvents from "../upcoming-events";
 import LinkBlock from "./link-block";
+import RaceListSlice from "./race-list";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
     {slice_type === "link_blocks" && <LinkBlock items={items} />}
+    {slice_type === "race_list" && <RaceListSlice items={items} />}
     {slice_type === "row_image___text" && <RowImageText primary={primary} />}
     {slice_type === "ask_the_coaches" && (
       <AskTheCoaches primary={primary} items={items} display={display} />
@@ -42,16 +44,7 @@ const Slice = ({ slice_type, primary, items, display }) => (
       <MultiColumnTextSlice items={items} />
     )}
     {slice_type === "boards___committees" && <CommitteesSlice />}
-    {slice_type === "next_meetups" && (
-      <div className="max-w-6xl mx-auto my-8">
-        {primary.title && (
-          <h4 className="chunkyLabel text-xl text-center">
-            {primary.title.text}
-          </h4>
-        )}
-        <UpcomingEvents />
-      </div>
-    )}
+    {slice_type === "next_meetups" && <UpcomingEvents {...primary} />}
   </>
 );
 
