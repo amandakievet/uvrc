@@ -110,11 +110,19 @@ export const query = graphql`
             }
           }
           ... on PrismicPageBodyRichtext {
-            id
             slice_type
             primary {
               richtext {
                 html
+              }
+            }
+          }
+          ... on PrismicPageBodyLinkBlocks {
+            slice_type
+            items {
+              block_title
+              block_link {
+                url
               }
             }
           }

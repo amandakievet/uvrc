@@ -8,9 +8,11 @@ import FiftyFiftySlice from "./fifty-fifty";
 import MultiColumnTextSlice from "./multi-column-text";
 import CommitteesSlice from "./committees";
 import UpcomingEvents from "../upcoming-events";
+import LinkBlock from "./link-block";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
+    {slice_type === "link_blocks" && <LinkBlock items={items} />}
     {slice_type === "row_image___text" && <RowImageText primary={primary} />}
     {slice_type === "ask_the_coaches" && (
       <AskTheCoaches primary={primary} items={items} display={display} />

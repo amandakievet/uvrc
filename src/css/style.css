@@ -10,7 +10,7 @@ h6 {
 }
 
 .chunkyLabel {
-  @apply uppercase font-bold tracking-wider font-display;
+  @apply uppercase font-bold tracking-wider font-display leading-none;
 }
 
 .btn {
