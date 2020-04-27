@@ -15,7 +15,7 @@ const WordpressNewsletterListTemplate = ({ data, pageContext }) => {
     <Layout>
       <SEO title="All Newsletters" />
       <PageTitle title="All Newsletters" />
-      <div className="max-w-5xl mx-auto px-4 w-full">
+      <div className="max-w-5xl mx-auto px-4 w-full pb-10">
         <div className="flex flex-wrap">
           {data.allWordpressPost.edges.map(({ node }, index) => {
             const excerpt = node.content.split("<!--more-->")[0];

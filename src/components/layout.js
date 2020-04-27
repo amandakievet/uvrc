@@ -3,6 +3,7 @@ import React from "react";
 
 import Header from "./header";
 import Announcement from "./announcement";
+import Footer from "./footer";
 
 function Layout({ children }) {
   return (
@@ -11,6 +12,7 @@ function Layout({ children }) {
       <Header />
 
       <main className="flex flex-col flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }

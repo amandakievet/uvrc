@@ -13,7 +13,10 @@ import { embellishTitle } from "../utils/article";
 
 const TableOfContentsLink = ({ author, headline, tag, index }) => (
   <li className="pb-2">
-    <a href={`#${index + 1}`} className="underline hover:no-underline">
+    <a
+      href={`#${index + 1}`}
+      className="text-brand-lighter hover:text-brand c-transition"
+    >
       {embellishTitle(headline.text, tag)}
       {author && <> by {author}</>}
     </a>

@@ -69,7 +69,8 @@
               "cta_link": {
                 "type": "Link",
                 "config": {
-                  "label": "Cta Link"
+                  "label": "Cta Link",
+                  "allowTargetBlank": true
                 }
               },
               "image": {

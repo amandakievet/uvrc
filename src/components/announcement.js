@@ -17,7 +17,7 @@ const Announcement = () => {
   `);
   return (
     <div
-      className={`bg-brand-lighter text-white text-sm text-center py-2 px-4 font-display tracking-wide ${linkStyles.link}`}
+      className={`bg-brand text-white text-sm text-center py-2 px-4 font-display tracking-wide ${linkStyles.link}`}
       dangerouslySetInnerHTML={{
         __html: data.prismicAllPages.data.announcement.html
       }}
