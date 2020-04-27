@@ -4,6 +4,7 @@ import classnames from "classnames";
 import moment from "moment";
 
 import RichText from "./richtext";
+import btnStyles from "../css/buttons.module.css";
 
 const query = graphql`
   {
@@ -50,7 +51,11 @@ const UpcomingEvents = ({ title }) => {
                 ...
               </p>
             </div>
-            <a href={node.link} target="_blank" className="btn-link mx-auto">
+            <a
+              href={node.link}
+              target="_blank"
+              className={`${btnStyles.link} mx-auto`}
+            >
               RSVP + More Info
             </a>
           </div>

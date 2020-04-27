@@ -1,0 +1,20 @@
+.base {
+  @apply uppercase font-bold tracking-wider font-display leading-none;
+  transition: all 0.3s;
+}
+
+.primary {
+  @apply base bg-brand-lighter text-white px-6 py-4 text-sm;
+}
+
+.primary:hover {
+  @apply bg-brand;
+}
+
+.link {
+  @apply base border-b-2 border-brand-lighter pb-1;
+}
+
+.link:hover {
+  @apply border-transparent;
+}

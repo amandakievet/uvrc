@@ -2,6 +2,7 @@ import { graphql, useStaticQuery, Link } from "gatsby";
 import React, { useState } from "react";
 import stackedLogo from "../images/stacked-logo.svg";
 import navLinks from "../data/navigation";
+import btnStyles from "../css/buttons.module.css";
 
 function Header() {
   const [isExpanded, toggleExpansion] = useState(false);
@@ -56,7 +57,7 @@ function Header() {
           ))}
           <Link
             to="/membership/"
-            className="btn-primary md:ml-8 block mt-4 md:mt-0"
+            className={`${btnStyles.primary} md:ml-8 block mt-4 md:mt-0`}
           >
             Join us
           </Link>

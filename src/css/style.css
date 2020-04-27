@@ -13,21 +13,5 @@ h6 {
   @apply uppercase font-bold tracking-wider font-display leading-none;
 }
 
-.btn {
-  @apply chunkyLabel;
-}
-
-.btn-primary {
-  @apply btn bg-primary text-white px-6 py-4 text-sm;
-}
-
-.btn-primary:hover {
-  @apply bg-primary-lighter;
-}
-
-.btn-link {
-  @apply chunkyLabel border-b-2;
-}
-
 @tailwind components;
 @tailwind utilities;

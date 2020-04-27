@@ -4,9 +4,10 @@ import Img from "gatsby-image";
 import classnames from "classnames";
 
 import RichText from "../richtext";
+import btnStyles from "../../css/buttons.module.css";
 
 const FiftyFiftyLink = ({ cta_text, cta_link }) => (
-  <a href={cta_link.url} className="btn-primary mt-3 inline-block">
+  <a href={cta_link.url} className={`${btnStyles.primary} mt-3 inline-block`}>
     {cta_text}
   </a>
 );

@@ -26,6 +26,12 @@ module.exports = {
         },
         accent: {
           default: "#999999"
+        },
+        brand: {
+          lightest: "#FEFEE3",
+          lighter: "#00964B",
+          default: "#005828",
+          dark: "#073B3A"
         }
       }
     },
