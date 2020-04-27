@@ -13,5 +13,9 @@ h6 {
   @apply uppercase font-bold tracking-wider font-display leading-none;
 }
 
+.c-transition {
+  transition: all 0.3s;
+}
+
 @tailwind components;
 @tailwind utilities;

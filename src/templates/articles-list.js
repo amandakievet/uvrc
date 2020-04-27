@@ -31,6 +31,7 @@ export const query = graphql`
     allPrismicArticle(limit: $limit, skip: $skip) {
       edges {
         node {
+          uid
           data {
             headline {
               text

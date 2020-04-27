@@ -11,12 +11,16 @@ const ArticleTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={data.prismicArticle.data.headline.text} />
-      <Article {...data.prismicArticle.data} display="bold" />
-      <div className="flex justify-between mt-10">
-        {previous && <ArticleCard {...previous.data} uid={previous.uid} />}
-        {next && (
-          <ArticleCard {...next.data} uid={next.uid} className="ml-auto" />
-        )}
+      <div className="max-w-4xl mx-auto">
+        <Article {...data.prismicArticle.data} display="bold" />
+      </div>
+      <div className="max-w-6xl mx-auto w-full mb-20">
+        <div className="flex justify-between mt-10">
+          {previous && <ArticleCard {...previous.data} uid={previous.uid} />}
+          {next && (
+            <ArticleCard {...next.data} uid={next.uid} className="ml-auto" />
+          )}
+        </div>
       </div>
     </Layout>
   );

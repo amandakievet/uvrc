@@ -1,9 +1,9 @@
 .rt a {
-  @apply underline;
+  @apply text-brand-lighter;
 }
 
 .rt a:hover {
-  @apply no-underline;
+  @apply text-brand;
 }
 
 .rt p {

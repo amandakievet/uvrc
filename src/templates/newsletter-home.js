@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import NewsletterArticleList from "../components/newsletter-article-list";
 import ArticlesList from "../components/articles-list";
+import btnStyles from "../css/buttons.module.css";
 
 const NewsletterHome = ({ data }) => {
   const { newsletter, articleList } = data;
@@ -27,13 +28,13 @@ const NewsletterHome = ({ data }) => {
             <div className="flex justify-center mt-6">
               <Link
                 to={`/${newsletter.uid}`}
-                className="chunkyLabel mx-4 border-b-2 border-black hover:border-none"
+                className={`${btnStyles.link} mx-4`}
               >
                 Read On
               </Link>
               <Link
                 to={`/all-newsletters`}
-                className="chunkyLabel mx-4 border-b-2 border-black hover:border-none"
+                className={`${btnStyles.link} mx-4`}
               >
                 All Newsletters
               </Link>
@@ -46,10 +47,7 @@ const NewsletterHome = ({ data }) => {
           </div>
           <ArticlesList articleList={articleList} />
           <div className="text-center py-6">
-            <Link
-              to={`/articles`}
-              className="chunkyLabel border-b-2 border-black hover:border-none inline-block mx-auto"
-            >
+            <Link to={`/articles`} className={btnStyles.link}>
               All Articles
             </Link>
           </div>

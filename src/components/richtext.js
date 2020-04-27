@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./richtext.module.css";
+import styles from "../css/richtext.module.css";
 
 const RichText = ({ html, className }) => (
   <div

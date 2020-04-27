@@ -8,6 +8,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        dark: "#1A1F16",
         gray: {
           "100": "#f5f5f5",
           "200": "#eeeeee",
@@ -25,15 +26,17 @@ module.exports = {
           default: "#000000"
         },
         accent: {
-          default: "#999999"
+          default: "#EB4127"
         },
         brand: {
-          lightest: "#FEFEE3",
-          lighter: "#00964B",
-          default: "#005828",
-          dark: "#073B3A"
+          lighter: "#269732",
+          default: "#005828"
         }
-      }
+      },
+      borderColor: theme => ({
+        ...theme("colors"),
+        default: theme("colors.brand.lighter", "currentColor")
+      })
     },
     minWidth: {
       xs: "20rem",

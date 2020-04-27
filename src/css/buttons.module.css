@@ -12,7 +12,7 @@
 }
 
 .link {
-  @apply base border-b-2 border-brand-lighter pb-1;
+  @apply base border-b-2 border-brand-lighter pb-1 text-brand-lighter;
 }
 
 .link:hover {

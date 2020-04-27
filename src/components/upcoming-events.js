@@ -33,7 +33,7 @@ const UpcomingEvents = ({ title }) => {
           <div
             key={index}
             className={classnames(
-              "flex-1 bg-gray-200 p-8 my-2 flex flex-col justify-between",
+              "flex-1 p-8 my-2 flex flex-col justify-between",
               {
                 "lg:ml-4": index !== 0
               }

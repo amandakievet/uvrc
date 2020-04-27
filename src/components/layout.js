@@ -6,7 +6,7 @@ import Announcement from "./announcement";
 
 function Layout({ children }) {
   return (
-    <div className="flex flex-col font-sans min-h-screen text-black font-sans">
+    <div className="flex flex-col font-sans min-h-screen text-dark font-sans">
       <Announcement />
       <Header />
 

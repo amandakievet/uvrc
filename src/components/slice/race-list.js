@@ -17,7 +17,8 @@ const Race = ({
       </div>
       <div>
         <h4 className="chunkyLabel text-2xl">
-          {race_title} / <span className="text-gray-500">{distance}</span>
+          {race_title}
+          <span className="text-brand-lighter"> / {distance}</span>
         </h4>
         <p>{race_location}</p>
       </div>

@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <header className="bg-white">
-      <div className="flex flex-wrap items-center justify-between md:justify-center lg:justify-between p-4 md:px-8 border-b">
+      <div className="flex flex-wrap items-center justify-between md:justify-center lg:justify-between p-4 md:px-8 border-b-2">
         <Link className="flex items-center no-underline" to="/">
           <img
             src={stackedLogo}
@@ -48,7 +48,7 @@ function Header() {
         >
           {navLinks.map(link => (
             <Link
-              className="block md:inline-block mt-4 md:mt-0 md:ml-8 no-underline chunkyLabel text-sm text-primary hover:text-primary-lightest"
+              className="block md:inline-block mt-4 md:mt-0 md:ml-8 no-underline chunkyLabel text-sm text-primary hover:text-brand-lighter"
               key={link.title}
               to={link.route}
             >

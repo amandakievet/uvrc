@@ -4,15 +4,19 @@ import RichText from "./richtext";
 import Slice from "./slice/index";
 
 const BoldHeader = ({ headline, author, tag }) => (
-  <div className="mb-8 text-center">
-    {tag && <span className="chunkyLabel text-sm text-accent">{tag}</span>}
+  <div className="my-10 text-center">
+    {tag && (
+      <span className="chunkyLabel text-sm text-brand-lighter">{tag}</span>
+    )}
     <h2 className="text-5xl mb-2">{headline.text}</h2>
     {author && <p className="font-display">By: {author}</p>}
   </div>
 );
 const Header = ({ headline, author, tag }) => (
   <div className="mb-8">
-    {tag && <span className="chunkyLabel text-sm text-accent">{tag}</span>}
+    {tag && (
+      <span className="chunkyLabel text-sm text-brand-lighter">{tag}</span>
+    )}
     <h2 className="text-4xl mb-2">{headline.text}</h2>
     {author && <p className="font-display">By: {author}</p>}
   </div>

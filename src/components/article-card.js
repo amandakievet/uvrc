@@ -12,18 +12,18 @@ const ArticleCard = ({
   className
 }) => (
   <Link
-    to={`/${uid}`}
-    className={`block flex justify-between border p-4 ${className}`}
+    to={`/${uid}/`}
+    className={`block flex justify-between border-2 p-4 hover:border-brand ${className}`}
   >
     <div className="w-full">
       {tag && (
-        <span className="text-accent chunkyLabel text-xs font-display">
+        <span className="text-brand-lighter chunkyLabel text-xs font-display pb-1">
           {tag}
         </span>
       )}
       <h4 className="text-xl pb-3 leading-tight">{headline.text}</h4>
       <div className="text-xs w-full flex justify-between font-display leading-tight">
-        {author && <p>By {author}</p>}
+        {author && <p className="mr-4">By {author}</p>}
         {date && (
           <p className="text-gray-500 ml-auto">
             {moment(date).format("MMMM Do YYYY")}
