@@ -22,5 +22,9 @@ export default [
   {
     route: "/contact/",
     title: "Contact"
+  },
+  {
+    route: "/committees/",
+    title: "Board & Committees"
   }
 ];
