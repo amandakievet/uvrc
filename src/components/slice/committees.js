@@ -1,5 +1,5 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import moment from "moment";
 
 import RichText from "../richtext";
@@ -117,7 +117,7 @@ const CommitteesSlice = () => {
       <div className="flex-1">
         <StyledSubTitle>Recent Meeting Notes</StyledSubTitle>
         {data.allWordpressPost.edges.map(({ node }, index) => (
-          <div key={index} className="mb-4">
+          <Link to={`/${node.slug}`} key={index} className="block mb-4">
             <p className="text-gray-500 ml-auto">
               {moment(node.date).format("MMMM Do YYYY")}
             </p>
@@ -125,9 +125,12 @@ const CommitteesSlice = () => {
               {node.title.replace("&#8211;", "—")}
             </h4>
             <RichText
-              html={node.content.replace(/(<([^>]+)>)/gi, "").slice(0, 300)}
+              html={node.content
+                .replace(/(<([^>]+)>)/gi, "")
+                .slice(0, 300)
+                .concat("...")}
             />
-          </div>
+          </Link>
         ))}
       </div>
     </div>

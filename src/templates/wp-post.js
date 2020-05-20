@@ -6,7 +6,7 @@ import SEO from "../components/seo";
 import RichText from "../components/richtext";
 import Pagination from "../components/pagination";
 
-const WordpressNewsletterTemplate = ({ data, pageContext }) => {
+const WordpressPostTemplate = ({ data, pageContext }) => {
   const { title, content, date } = data.wordpressPost;
 
   return (
@@ -27,7 +27,7 @@ const WordpressNewsletterTemplate = ({ data, pageContext }) => {
 };
 
 export const query = graphql`
-  query WordpressNewsletterById($id: String!) {
+  query WordpressPostById($id: String!) {
     wordpressPost(id: { eq: $id }) {
       content
       title
@@ -36,4 +36,4 @@ export const query = graphql`
   }
 `;
 
-export default WordpressNewsletterTemplate;
+export default WordpressPostTemplate;
