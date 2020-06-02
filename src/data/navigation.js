@@ -16,6 +16,10 @@ export default [
     title: "Newsletter"
   },
   {
+    route: "/all-meetings/",
+    title: "Meetings"
+  },
+  {
     route: "/contact/",
     title: "Contact"
   }
