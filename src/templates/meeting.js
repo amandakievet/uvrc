@@ -5,9 +5,10 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichText from "../components/richtext";
 import PageTitle from "../components/page-title";
+import Pagination from "../components/pagination";
 
 import btnStyles from "../css/buttons.module.css";
-const Meeting = ({ data }) => {
+const Meeting = ({ data, pageContext }) => {
   const { author, content, date, title } = data.prismicMeeting.data;
   return (
     <Layout>
@@ -15,6 +16,9 @@ const Meeting = ({ data }) => {
       <div className="max-w-6xl mx-auto mb-10">
         <PageTitle title={title.text} />
         <RichText html={content.html} />
+      </div>
+      <div className="py-6">
+        <Pagination {...pageContext} />
       </div>
       <div className="text-center mb-10">
         <Link to="/all-meetings/" className={btnStyles.link}>

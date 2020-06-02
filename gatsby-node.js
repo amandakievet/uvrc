@@ -146,20 +146,6 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  allPrismicMeeting.forEach(edge => {
-    createPage({
-      path: `/${edge.node.uid}`,
-      component: path.resolve("src/templates/meeting.js"),
-      context: {
-        uid: edge.node.uid,
-        next: edge.next
-          ? `/${edge.next.uid}`
-          : `/${wordpressMeetings[0].node.slug}`,
-        prev: edge.previous && `/${edge.previous.uid}`
-      }
-    });
-  });
-
   const currentNewsletter = pages.data.allPrismicNewsletter.edges[0];
   createPage({
     path: `/newsletter`,
@@ -269,6 +255,29 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  const numPrismicMeetingListPages = Math.ceil(
+    allPrismicMeeting.length / meetingsPerPage
+  );
+  const numWPMeetingListPages = Math.ceil(
+    wordpressMeetings.length / meetingsPerPage
+  );
+  const numMeetingListPages =
+    numPrismicMeetingListPages + numWPMeetingListPages;
+
+  allPrismicMeeting.forEach(edge => {
+    createPage({
+      path: `/${edge.node.uid}`,
+      component: path.resolve("src/templates/meeting.js"),
+      context: {
+        uid: edge.node.uid,
+        next: edge.next
+          ? `/${edge.next.uid}`
+          : `/${wordpressMeetings[0].node.slug}`,
+        prev: edge.previous && `/${edge.previous.uid}`
+      }
+    });
+  });
+
   wordpressMeetings.forEach(edge => {
     createPage({
       path: `/${edge.node.slug}`,
@@ -278,19 +287,10 @@ exports.createPages = async ({ graphql, actions }) => {
         next: edge.next && `/${edge.next.slug}`,
         prev: edge.previous
           ? `/${edge.previous.slug}`
-          : `/${wordpressMeetings[wordpressMeetings.length - 1].node.uid}`
+          : `/${allPrismicMeeting[allPrismicNewsletter.length - 1].node.uid}`
       }
     });
   });
-
-  const numPrismicMeetingListPages = Math.ceil(
-    allPrismicMeeting.length / meetingsPerPage
-  );
-  const numWPMeetingListPages = Math.ceil(
-    wordpressMeetings.length / meetingsPerPage
-  );
-  const numMeetingListPages =
-    numPrismicMeetingListPages + numWPMeetingListPages;
 
   Array.from({ length: numMeetingListPages }).forEach((_, index) => {
     const source =
