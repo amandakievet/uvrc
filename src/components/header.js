@@ -1,16 +1,29 @@
 import { graphql, useStaticQuery, Link } from "gatsby";
 import React, { useState } from "react";
+import classnames from "classnames";
 import stackedLogo from "../images/stacked-logo.svg";
-import navLinks from "../data/navigation";
 import btnStyles from "../css/buttons.module.css";
+
+import SmartLink from "./smart-link";
 
 function Header() {
   const [isExpanded, toggleExpansion] = useState(false);
-  const { site } = useStaticQuery(graphql`
+  const { site, prismicAllPages } = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {
           title
+        }
+      }
+      prismicAllPages {
+        data {
+          top_nav_links {
+            link {
+              url
+            }
+            link_text
+            is_button
+          }
         }
       }
     }
@@ -46,21 +59,20 @@ function Header() {
             isExpanded ? `block` : `hidden`
           } md:block md:flex md:items-center w-full lg:w-auto md:justify-center`}
         >
-          {navLinks.map(link => (
-            <Link
-              className="block md:inline-block mt-4 md:mt-0 md:ml-8 no-underline chunkyLabel text-sm text-primary hover:text-brand-lighter"
-              key={link.title}
-              to={link.route}
-            >
-              {link.title}
-            </Link>
-          ))}
-          <Link
-            to="/membership/"
-            className={`${btnStyles.primary} md:ml-8 block mt-4 md:mt-0`}
-          >
-            Join us
-          </Link>
+          {prismicAllPages.data.top_nav_links.map(
+            ({ link, link_text, is_button }) => (
+              <SmartLink
+                className={classnames({
+                  "block md:inline-block mt-4 md:mt-0 md:ml-8 no-underline chunkyLabel text-sm text-primary hover:text-brand-lighter": !is_button,
+                  [btnStyles.primary + " md:ml-8 block mt-4 md:mt-0"]: is_button
+                })}
+                key={link_text}
+                to={link.url}
+              >
+                {link_text}
+              </SmartLink>
+            )
+          )}
         </nav>
       </div>
     </header>

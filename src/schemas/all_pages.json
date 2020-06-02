@@ -66,5 +66,35 @@
         "label": "Sponsor Button Text"
       }
     }
+  },
+  "Top Navigation": {
+    "top_nav_links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link_text": {
+            "type": "Text",
+            "config": {
+              "label": "Link Text"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Link"
+            }
+          },
+          "is_button": {
+            "type": "Boolean",
+            "config": {
+              "default_value": false,
+              "label": "Is Button"
+            }
+          }
+        },
+        "label": "Top Nav Links"
+      }
+    }
   }
 }

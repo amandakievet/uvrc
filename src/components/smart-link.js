@@ -2,21 +2,35 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
+const SITE_URL = "uppervalleyrunningclub.org";
+
 const SmartLink = ({ className, to, children }) => {
+  const hardCoded = to.indexOf(SITE_URL) > -1;
+  const mailto = to.indexOf("mailto" > -1);
   const internal = /^\/(?!\/)/.test(to);
+
   if (internal) {
     return (
       <Link className={className} to={to}>
         {children}
       </Link>
     );
-  } else {
+  }
+
+  if (hardCoded && !mailto) {
+    const splitTo = to.split(SITE_URL);
     return (
-      <a href={to} className={className}>
+      <Link to={splitTo[splitTo.length - 1]} className={className}>
         {children}
-      </a>
+      </Link>
     );
   }
+
+  return (
+    <a href={to} className={className}>
+      {children}
+    </a>
+  );
 };
 
 export default SmartLink;

@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 
 import RichText from "./richtext";
+import SmartLink from "./smart-link";
 import btnStyles from "../css/buttons.module.css";
 const Sponsors = () => {
   const data = useStaticQuery(graphql`
@@ -59,9 +60,9 @@ const Sponsors = () => {
         ))}
       </div>
       <RichText html={why_sponsor_text.html} className="text-sm my-4" />
-      <Link to={sponsor_button_link.url} className={btnStyles.primary}>
+      <SmartLink to={sponsor_button_link.url} className={btnStyles.primary}>
         {sponsor_button_text}
-      </Link>
+      </SmartLink>
     </div>
   );
 };
