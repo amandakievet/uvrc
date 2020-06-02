@@ -10,6 +10,7 @@ const wrapper = promise =>
 const path = require("path");
 
 const newslettersPerPage = 8;
+const meetingsPerPage = 8;
 const articlesPerPage = 4;
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -110,10 +111,24 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allPrismicMeeting(sort: { fields: data___date, order: DESC }) {
+        edges {
+          node {
+            uid
+          }
+          next {
+            uid
+          }
+          previous {
+            uid
+          }
+        }
+      }
     }
   `);
 
   const allPrismicNewsletter = pages.data.allPrismicNewsletter.edges;
+  const allPrismicMeeting = pages.data.allPrismicMeeting.edges;
   const wordpressNewsletters = pages.data.wordpressNewsletters.edges;
   const wordpressMeetings = pages.data.wordpressMeetings.edges;
 
@@ -200,9 +215,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const numWPNewsletterListPages = Math.ceil(
     wordpressNewsletters.length / newslettersPerPage
   );
-
   const numNewsletterListPages =
     numPrismicNewsletterListPages + numWPNewsletterListPages;
+
   Array.from({ length: numNewsletterListPages }).forEach((_, index) => {
     const source =
       index + 1 <= numPrismicNewsletterListPages ? "prismic" : "wordpress";
@@ -240,6 +255,29 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  const numPrismicMeetingListPages = Math.ceil(
+    allPrismicMeeting.length / meetingsPerPage
+  );
+  const numWPMeetingListPages = Math.ceil(
+    wordpressMeetings.length / meetingsPerPage
+  );
+  const numMeetingListPages =
+    numPrismicMeetingListPages + numWPMeetingListPages;
+
+  allPrismicMeeting.forEach(edge => {
+    createPage({
+      path: `/${edge.node.uid}`,
+      component: path.resolve("src/templates/meeting.js"),
+      context: {
+        uid: edge.node.uid,
+        next: edge.next
+          ? `/${edge.next.uid}`
+          : `/${wordpressMeetings[0].node.slug}`,
+        prev: edge.previous && `/${edge.previous.uid}`
+      }
+    });
+  });
+
   wordpressMeetings.forEach(edge => {
     createPage({
       path: `/${edge.node.slug}`,
@@ -249,7 +287,43 @@ exports.createPages = async ({ graphql, actions }) => {
         next: edge.next && `/${edge.next.slug}`,
         prev: edge.previous
           ? `/${edge.previous.slug}`
-          : `/${allPrismicNewsletter[allPrismicNewsletter.length - 1].node.uid}`
+          : `/${allPrismicMeeting[allPrismicNewsletter.length - 1].node.uid}`
+      }
+    });
+  });
+
+  Array.from({ length: numMeetingListPages }).forEach((_, index) => {
+    const source =
+      index + 1 <= numPrismicMeetingListPages ? "prismic" : "wordpress";
+    let component, skip;
+
+    if (source === "prismic") {
+      component = path.resolve("src/templates/meetings-list.js");
+      const firstItemIndex = index * meetingsPerPage;
+      const lastItemIndex = firstItemIndex + meetingsPerPage - 1;
+      skip = index * meetingsPerPage;
+    } else if (source === "wordpress") {
+      component = path.resolve("src/templates/wp-meetings-list.js");
+      skip = (index - numPrismicMeetingListPages) * meetingsPerPage;
+    }
+
+    createPage({
+      path: index === 0 ? `/all-meetings` : `/all-meetings/${index + 1}`,
+      component,
+      context: {
+        limit: meetingsPerPage,
+        skip,
+        numPostsPerPage: meetingsPerPage,
+        prev:
+          index === 0
+            ? null
+            : index === 1
+            ? `/all-meetings`
+            : `/all-meetings/${index}`,
+        next:
+          index === numMeetingListPages - 1
+            ? null
+            : `/all-meetings/${index + 2}`
       }
     });
   });

@@ -1,13 +1,15 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichText from "../components/richtext";
 import Pagination from "../components/pagination";
 
-const WordpressNewsletterTemplate = ({ data, pageContext }) => {
-  const { title, content, date } = data.wordpressPost;
+import btnStyles from "../css/buttons.module.css";
+
+const WordpressPostTemplate = ({ data, pageContext }) => {
+  const { title, content, date, categories } = data.wordpressPost;
 
   return (
     <Layout>
@@ -21,19 +23,39 @@ const WordpressNewsletterTemplate = ({ data, pageContext }) => {
         <div className="py-6">
           <Pagination {...pageContext} />
         </div>
+        {categories[0].name === "Meetings" && (
+          <div className="text-center">
+            <Link to="/all-meetings/" className={`${btnStyles.link} mx-auto`}>
+              All Meetings
+            </Link>
+          </div>
+        )}
+        {categories[0].name === "Newsletters" && (
+          <div className="text-center">
+            <Link
+              to="/all-newsletters/"
+              className={`${btnStyles.link} mx-auto`}
+            >
+              All Newsletters
+            </Link>
+          </div>
+        )}
       </div>
     </Layout>
   );
 };
 
 export const query = graphql`
-  query WordpressNewsletterById($id: String!) {
+  query WordpressPostById($id: String!) {
     wordpressPost(id: { eq: $id }) {
       content
       title
       date
+      categories {
+        name
+      }
     }
   }
 `;
 
-export default WordpressNewsletterTemplate;
+export default WordpressPostTemplate;
