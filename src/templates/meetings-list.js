@@ -34,8 +34,8 @@ const MeetingListTemplate = ({ data, pageContext }) => {
             );
           })}
         </div>
+        <Pagination {...pageContext} />
       </div>
-      <Pagination {...pageContext} />
     </Layout>
   );
 };
