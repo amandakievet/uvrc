@@ -14,5 +14,57 @@
         "label": "Club Address"
       }
     }
+  },
+  "Sponsors": {
+    "why_sponsor_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Why Sponsor Text"
+      }
+    },
+    "sponsors": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "logo": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Logo"
+            }
+          },
+          "sponsor_name": {
+            "type": "Text",
+            "config": {
+              "label": "Sponsor Name"
+            }
+          },
+          "sponsor_link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Sponsor Link"
+            }
+          }
+        },
+        "label": "Sponsors"
+      }
+    },
+    "sponsor_button_link": {
+      "type": "Link",
+      "config": {
+        "allowTargetBlank": true,
+        "label": "Sponsor Button Link"
+      }
+    },
+    "sponsor_button_text": {
+      "type": "Text",
+      "config": {
+        "label": "Sponsor Button Text"
+      }
+    }
   }
 }

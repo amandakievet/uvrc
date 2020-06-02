@@ -2,10 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import footerLinks from "../data/footer-links";
 import SmartLink from "./smart-link";
+import Sponsors from "./sponsors";
 import footerGraphic from "../images/footer.svg";
 
 const Footer = () => (
   <>
+    <Sponsors />
     <img src={footerGraphic} />
     <div className="bg-brand pb-8 pt-8 md:pt-0 md:pb-16 px-8">
       <div className="max-w-6xl mx-auto w-full flex text-white text-sm justify-between">
