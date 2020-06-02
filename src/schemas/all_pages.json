@@ -96,5 +96,49 @@
         "label": "Top Nav Links"
       }
     }
+  },
+  "Footer": {
+    "footer_links_column_1": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link_text": {
+            "type": "Text",
+            "config": {
+              "label": "Link Text"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Link"
+            }
+          }
+        },
+        "label": "Footer Links Column 1"
+      }
+    },
+    "footer_links_column_2": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link_text": {
+            "type": "Text",
+            "config": {
+              "label": "Link Text"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Link"
+            }
+          }
+        },
+        "label": "Footer Links Column 2"
+      }
+    }
   }
 }
