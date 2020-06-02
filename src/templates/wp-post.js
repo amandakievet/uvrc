@@ -1,13 +1,15 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import RichText from "../components/richtext";
 import Pagination from "../components/pagination";
 
+import btnStyles from "../css/buttons.module.css";
+
 const WordpressPostTemplate = ({ data, pageContext }) => {
-  const { title, content, date } = data.wordpressPost;
+  const { title, content, date, categories } = data.wordpressPost;
 
   return (
     <Layout>
@@ -21,6 +23,23 @@ const WordpressPostTemplate = ({ data, pageContext }) => {
         <div className="py-6">
           <Pagination {...pageContext} />
         </div>
+        {categories[0].name === "Meetings" && (
+          <div className="text-center">
+            <Link to="/all-meetings/" className={`${btnStyles.link} mx-auto`}>
+              All Meetings
+            </Link>
+          </div>
+        )}
+        {categories[0].name === "Newsletters" && (
+          <div className="text-center">
+            <Link
+              to="/all-newsletters/"
+              className={`${btnStyles.link} mx-auto`}
+            >
+              All Newsletters
+            </Link>
+          </div>
+        )}
       </div>
     </Layout>
   );
@@ -32,6 +51,9 @@ export const query = graphql`
       content
       title
       date
+      categories {
+        name
+      }
     }
   }
 `;

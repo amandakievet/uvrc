@@ -5,6 +5,7 @@ import moment from "moment";
 import RichText from "../richtext";
 
 import linkStyles from "../../css/link.module.css";
+import btnStyles from "../../css/buttons.module.css";
 
 const StyledListItem = ({ children }) => <li className="pb-1">{children}</li>;
 
@@ -132,6 +133,9 @@ const CommitteesSlice = () => {
             />
           </Link>
         ))}
+        <Link to="/all-meetings/" className={btnStyles.link}>
+          All Meeting Notes
+        </Link>
       </div>
     </div>
   );
