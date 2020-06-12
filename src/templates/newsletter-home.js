@@ -82,7 +82,10 @@ export const query = graphql`
       }
       uid
     }
-    articleList: allPrismicArticle(sort: { fields: data___date }, limit: 6) {
+    articleList: allPrismicArticle(
+      sort: { fields: data___date, order: DESC }
+      limit: 8
+    ) {
       edges {
         node {
           uid

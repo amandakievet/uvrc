@@ -11,7 +11,7 @@ const path = require("path");
 
 const newslettersPerPage = 8;
 const meetingsPerPage = 8;
-const articlesPerPage = 4;
+const articlesPerPage = 10;
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -31,7 +31,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allPrismicArticle {
+      allPrismicArticle(sort: { fields: data___date, order: DESC }) {
         edges {
           node {
             uid
