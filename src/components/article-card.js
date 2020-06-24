@@ -21,7 +21,9 @@ const ArticleCard = ({
           {tag}
         </span>
       )}
-      <h4 className="text-xl pb-3 leading-tight">{headline.text}</h4>
+      <h4 className="text-xl pb-3 leading-tight normal-case tracking-normal">
+        {headline.text}
+      </h4>
       <div className="text-xs w-full flex justify-between font-display leading-tight">
         {author && <p className="mr-4">By {author}</p>}
         {date && (

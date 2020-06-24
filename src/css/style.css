@@ -39,13 +39,6 @@ h6 {
   @apply chunkyLabel;
 }
 
-a {
-  @apply underline;
-}
-a:hover {
-  @apply no-underline;
-}
-
 button:focus {
   @apply outline-none;
 }

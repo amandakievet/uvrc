@@ -6,7 +6,7 @@ const SITE_URL = "uppervalleyrunningclub.org";
 
 const SmartLink = ({ className, to, children }) => {
   const hardCoded = to.indexOf(SITE_URL) > -1;
-  const mailto = to.indexOf("mailto" > -1);
+  const mailto = to.indexOf("mailto") > -1;
   const internal = /^\/(?!\/)/.test(to);
 
   if (internal) {
@@ -19,8 +19,9 @@ const SmartLink = ({ className, to, children }) => {
 
   if (hardCoded && !mailto) {
     const splitTo = to.split(SITE_URL);
+    const link = splitTo[splitTo.length - 1];
     return (
-      <Link to={splitTo[splitTo.length - 1]} className={className}>
+      <Link to={link} className={className}>
         {children}
       </Link>
     );

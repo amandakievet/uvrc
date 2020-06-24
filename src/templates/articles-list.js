@@ -38,6 +38,7 @@ export const query = graphql`
             }
             tag
             author
+            date
             article_thumbnail {
               url
             }
