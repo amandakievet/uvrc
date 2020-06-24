@@ -36,7 +36,7 @@ const Answer = ({ answer, coach }) => {
 const AskTheCoaches = ({ items, primary, display }) => {
   return (
     <div
-      className={classnames("max-w-3xl", {
+      className={classnames("max-w-3xl px-4", {
         "mx-auto": display === "bold"
       })}
     >

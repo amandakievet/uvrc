@@ -23,12 +23,14 @@
       "type": "Select",
       "config": {
         "options": [
+          "Member Submission",
           "Letter from a Board Member",
           "Social Events",
-          "Member Submission",
           "Ask the Coaches",
-          "Runner Profile"
+          "Runner Profile",
+          "Route of the Month"
         ],
+        "default_value": "Member Submission",
         "label": "Tag"
       }
     },

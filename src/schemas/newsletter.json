@@ -26,6 +26,13 @@
         "label": "Editor"
       }
     },
+    "article_collector": {
+      "type": "Select",
+      "config": {
+        "options": ["Amanda Kievet", "Geoff Dunbar"],
+        "label": "Articles collected by"
+      }
+    },
     "note_from_the_editor": {
       "type": "StructuredText",
       "config": {

@@ -1,5 +1,13 @@
 @tailwind base;
 
+.chunkyLabel {
+  @apply uppercase font-bold tracking-wider font-display leading-none;
+}
+
+.c-transition {
+  transition: all 0.3s;
+}
+
 h1,
 h2,
 h3,
@@ -9,12 +17,56 @@ h6 {
   @apply font-display font-bold;
 }
 
-.chunkyLabel {
-  @apply uppercase font-bold tracking-wider font-display leading-none;
+h1 {
+  @apply text-3xl;
+}
+h2 {
+  @apply text-2xl;
+}
+h3 {
+  @apply text-xl;
+}
+h4 {
+  @apply text-lg;
+}
+h6 {
+  @apply text-sm;
 }
 
-.c-transition {
-  transition: all 0.3s;
+h4,
+h5,
+h6 {
+  @apply chunkyLabel;
+}
+
+a {
+  @apply underline;
+}
+a:hover {
+  @apply no-underline;
+}
+
+button:focus {
+  @apply outline-none;
+}
+
+p {
+  @apply mb-3;
+}
+
+@screen md {
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-2xl;
+  }
+  h4 {
+    @apply text-xl;
+  }
 }
 
 @tailwind components;

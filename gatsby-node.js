@@ -287,7 +287,7 @@ exports.createPages = async ({ graphql, actions }) => {
         next: edge.next && `/${edge.next.slug}`,
         prev: edge.previous
           ? `/${edge.previous.slug}`
-          : `/${allPrismicMeeting[allPrismicNewsletter.length - 1].node.uid}`
+          : `/${allPrismicMeeting[allPrismicMeeting.length - 1].node.uid}`
       }
     });
   });

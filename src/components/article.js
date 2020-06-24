@@ -34,18 +34,22 @@ const Article = ({
   const headerProps = { headline, author, tag };
   return (
     <div className={className}>
-      {display === "bold" ? (
-        <BoldHeader {...headerProps} />
-      ) : (
-        <Header {...headerProps} />
-      )}
+      <div className="px-4">
+        {display === "bold" ? (
+          <BoldHeader {...headerProps} />
+        ) : (
+          <Header {...headerProps} />
+        )}
+      </div>
       {richtext && (
-        <RichText
-          html={richtext.html}
-          className={classnames("max-w-3xl", {
-            "mx-auto": display === "bold"
-          })}
-        />
+        <div className="px-4">
+          <RichText
+            html={richtext.html}
+            className={classnames("max-w-3xl", {
+              "mx-auto": display === "bold"
+            })}
+          />
+        </div>
       )}
       {body &&
         body.map((slice, index) => (

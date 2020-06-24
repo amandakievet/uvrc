@@ -29,10 +29,14 @@ const NewsletterTemplate = ({ data, pageContext }) => {
     note_from_the_editor,
     month,
     editor,
-    articles
+    articles,
+    article_collector
   } = data.prismicNewsletter.data;
   const { newsletter_editors } = data.prismicPeople.data;
   const currentEditor = newsletter_editors.filter(e => e.name === editor)[0];
+  const articleCollector = newsletter_editors.filter(
+    e => e.name === article_collector
+  )[0];
   const articleData = articles.map(
     articleNode => articleNode.article.document.data
   );
@@ -41,14 +45,22 @@ const NewsletterTemplate = ({ data, pageContext }) => {
       <SEO title={title.text} />
       <div className="max-w-6xl mx-auto border-b-2 pb-10 py-10">
         <PageTitle title={title.text} />
-        <div className="flex">
-          <div className="mr-8">
-            <h2 className="chunkyLabel pb-4">Note from the Editor</h2>
+        <div className="flex flex-col md:flex-row px-4">
+          <div className="mr-8 flex-1 mb-6">
+            <h4 className="chunkyLabel pb-4">Note from the Editor</h4>
             <RichText html={note_from_the_editor.html} className="mb-10" />
-            <Profile {...currentEditor} />
+            {[
+              { profile: currentEditor, title: "Editor" },
+              { profile: articleCollector, title: "Article Collection" }
+            ].map(({ profile, title }) => (
+              <div className="pb-4">
+                <h6 className="mb-3 text-gray-500">{title}</h6>
+                <Profile {...profile} />
+              </div>
+            ))}
           </div>
-          <div>
-            <h2 className="chunkyLabel pb-4">Table of Contents</h2>
+          <div className="flex-1">
+            <h4 className="chunkyLabel pb-4">Table of Contents</h4>
             <ul>
               {articleData.map((articleNode, index) => (
                 <TableOfContentsLink
@@ -88,6 +100,7 @@ export const query = graphql`
         }
         month
         editor
+        article_collector
         articles {
           article {
             document {

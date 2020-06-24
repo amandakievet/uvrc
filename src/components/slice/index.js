@@ -33,7 +33,7 @@ const Slice = ({ slice_type, primary, items, display }) => (
           (primary.richtext && primary.richtext.html) ||
           (primary.rich_text && primary.rich_text.html)
         }
-        className={classnames("max-w-3xl mx-auto my-8", {
+        className={classnames("max-w-3xl mx-auto my-8 px-4", {
           "mx-auto": display === "bold"
         })}
       />
@@ -50,7 +50,7 @@ const Slice = ({ slice_type, primary, items, display }) => (
 
 const RowImageText = ({ primary }) => (
   <div
-    className={classnames("flex flex-col md:flex-row", {
+    className={classnames("flex flex-col md:flex-row px-4", {
       "md:flex-row-reverse justify-end": primary.image_position === "Right"
     })}
   >
