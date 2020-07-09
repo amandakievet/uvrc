@@ -69,4 +69,8 @@
   .rt h4 {
     @apply text-xl;
   }
+
+  .rt img {
+    @apply max-h-80vh mx-auto;
+  }
 }

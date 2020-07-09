@@ -6,10 +6,10 @@ const ImageGallery = ({ items }) => {
 
   return (
     <>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap mb-8 justify-center items-center">
         {items.map(({ gallery_image }, index) => (
           <img
-            className="w-32 md:w-64 cursor-pointer p-3"
+            className="cursor-pointer p-3 w-1/3 md:w-1/4 lg:w-1/5"
             src={gallery_image.thumbnails.Thumbnail.url}
             onClick={() => setToggler(!toggler)}
             key={index}
