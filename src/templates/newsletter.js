@@ -132,7 +132,15 @@ export const query = graphql`
                       slice_type
                       primary {
                         image {
-                          url
+                          fluid(maxWidth: 1024) {
+                            base64
+                            aspectRatio
+                            src
+                            srcSet
+                            srcWebp
+                            srcSetWebp
+                            sizes
+                          }
                         }
                       }
                     }

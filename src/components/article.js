@@ -45,9 +45,7 @@ const Article = ({
         <div className="px-4">
           <RichText
             html={richtext.html}
-            className={classnames("max-w-3xl", {
-              "mx-auto": display === "bold"
-            })}
+            className={classnames("max-w-4xl mx-auto")}
           />
         </div>
       )}

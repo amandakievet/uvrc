@@ -10,6 +10,7 @@ import CommitteesSlice from "./committees";
 import UpcomingEvents from "../upcoming-events";
 import LinkBlock from "./link-block";
 import RaceListSlice from "./race-list";
+import FullsizeImage from "./fullsize-image";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
@@ -19,21 +20,14 @@ const Slice = ({ slice_type, primary, items, display }) => (
     {slice_type === "ask_the_coaches" && (
       <AskTheCoaches primary={primary} items={items} display={display} />
     )}
-    {slice_type === "fullsize_image" && (
-      <img
-        src={primary.image.url}
-        className={classnames("mb-8 max-h-screen", {
-          "mx-auto": display === "bold"
-        })}
-      />
-    )}
+    {slice_type === "fullsize_image" && <FullsizeImage primary={primary} />}
     {slice_type === "richtext" && (
       <RichText
         html={
           (primary.richtext && primary.richtext.html) ||
           (primary.rich_text && primary.rich_text.html)
         }
-        className={classnames("max-w-3xl mx-auto my-8 px-4", {
+        className={classnames("max-w-4xl mx-auto my-8 px-4", {
           "mx-auto": display === "bold"
         })}
       />
