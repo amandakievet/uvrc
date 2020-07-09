@@ -73,16 +73,15 @@ const NewsletterTemplate = ({ data, pageContext }) => {
           </div>
         </div>
       </div>
-      <div className="max-w-4xl mx-auto">
-        {articleData.map((articleNode, index) => (
-          <div key={index}>
-            <a name={index + 1} />
-            <Article {...articleNode} key={index} className="border-b-2 py-4" />
-          </div>
-        ))}
-        <div className="py-6">
-          <Pagination {...pageContext} />
+      {articleData.map((articleNode, index) => (
+        <div key={index}>
+          <a name={index + 1} />
+          <Article {...articleNode} key={index} className="py-4" />
+          <div className="max-w-4xl mx-auto w-full border-b-2" />
         </div>
+      ))}
+      <div className="py-6 max-w-4xl mx-auto w-full">
+        <Pagination {...pageContext} />
       </div>
     </Layout>
   );

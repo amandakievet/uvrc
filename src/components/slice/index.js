@@ -11,6 +11,7 @@ import UpcomingEvents from "../upcoming-events";
 import LinkBlock from "./link-block";
 import RaceListSlice from "./race-list";
 import FullsizeImage from "./fullsize-image";
+import RichTextSlice from "./richtext-slice";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
@@ -22,14 +23,11 @@ const Slice = ({ slice_type, primary, items, display }) => (
     )}
     {slice_type === "fullsize_image" && <FullsizeImage primary={primary} />}
     {slice_type === "richtext" && (
-      <RichText
+      <RichTextSlice
         html={
           (primary.richtext && primary.richtext.html) ||
           (primary.rich_text && primary.rich_text.html)
         }
-        className={classnames("max-w-4xl mx-auto my-8 px-4", {
-          "mx-auto": display === "bold"
-        })}
       />
     )}
     {slice_type === "image_gallery" && <ImageGallery items={items} />}
@@ -44,18 +42,18 @@ const Slice = ({ slice_type, primary, items, display }) => (
 
 const RowImageText = ({ primary }) => (
   <div
-    className={classnames("flex flex-col md:flex-row px-4", {
+    className={classnames("flex flex-col md:flex-row px-4 max-w-4xl mx-auto", {
       "md:flex-row-reverse justify-end": primary.image_position === "Right"
     })}
   >
     <img
       src={primary.image.url}
-      className={classnames("self-start w-64", {
+      className={classnames("self-start sm:w-64 mb-8", {
         "md:pr-6": primary.image_position === "Left",
         "md:pl-6": primary.image_position === "Right"
       })}
     />
-    <RichText html={primary.richtext.html} className="max-w-3xl" />
+    <RichText html={primary.richtext.html} />
   </div>
 );
 

@@ -8,7 +8,7 @@ const FullsizeImage = ({ primary }) => {
     <Zoom>
       <Img
         fluid={primary.image.fluid}
-        className={"mb-8 max-h-screen mx-auto w-full h-full"}
+        className={"mb-8 h-full max-h-screen mx-auto w-full"}
         imgStyle={{ objectFit: "contain" }}
       />
     </Zoom>

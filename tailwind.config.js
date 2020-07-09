@@ -36,7 +36,10 @@ module.exports = {
       borderColor: theme => ({
         ...theme("colors"),
         default: theme("colors.brand.lighter", "currentColor")
-      })
+      }),
+      maxHeight: {
+        "80vh": "80vh"
+      }
     },
     minWidth: {
       xs: "20rem",
