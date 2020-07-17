@@ -96,6 +96,12 @@
                   "label": "Image"
                 }
               },
+              "image_caption": {
+                "type": "Text",
+                "config": {
+                  "label": "Image Caption"
+                }
+              },
               "richtext": {
                 "type": "StructuredText",
                 "config": {

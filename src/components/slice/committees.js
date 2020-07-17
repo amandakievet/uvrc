@@ -39,20 +39,6 @@ const CommitteesSlice = () => {
           }
         }
       }
-      allWordpressPost(
-        filter: { categories: { elemMatch: { name: { eq: "Meetings" } } } }
-        limit: 3
-      ) {
-        edges {
-          node {
-            author
-            title
-            slug
-            date
-            content
-          }
-        }
-      }
     }
   `);
   const {
@@ -116,23 +102,6 @@ const CommitteesSlice = () => {
         </ul>
       </div>
       <div className="flex-1">
-        <StyledSubTitle>Recent Meeting Notes</StyledSubTitle>
-        {data.allWordpressPost.edges.map(({ node }, index) => (
-          <Link to={`/${node.slug}`} key={index} className="block mb-4">
-            <p className="text-gray-500 ml-auto">
-              {moment(node.date).format("MMMM Do YYYY")}
-            </p>
-            <h4 className="text-xl pb-3 leading-tight">
-              {node.title.replace("&#8211;", "—")}
-            </h4>
-            <RichText
-              html={node.content
-                .replace(/(<([^>]+)>)/gi, "")
-                .slice(0, 300)
-                .concat("...")}
-            />
-          </Link>
-        ))}
         <Link to="/all-meetings/" className={btnStyles.link}>
           All Meeting Notes
         </Link>

@@ -9,7 +9,8 @@ import ArticlesList from "../components/articles-list";
 import btnStyles from "../css/buttons.module.css";
 
 const NewsletterHome = ({ data }) => {
-  const { newsletter, articleList } = data;
+  const { newsletters, articleList } = data;
+  const newsletter = newsletters.edges[0].node;
   const newsletterArticles = newsletter.data.articles.map(
     articleNode => articleNode.article.document.data
   );
@@ -58,29 +59,36 @@ const NewsletterHome = ({ data }) => {
 };
 
 export const query = graphql`
-  query NewsletterHomeByUid($uid: String!) {
-    newsletter: prismicNewsletter(uid: { eq: $uid }) {
-      data {
-        title {
-          text
-        }
-        articles {
-          article {
-            document {
-              ... on PrismicArticle {
-                data {
-                  headline {
-                    text
+  query NewsletterHomeBy {
+    newsletters: allPrismicNewsletter(
+      limit: 1
+      sort: { fields: data___month, order: DESC }
+    ) {
+      edges {
+        node {
+          data {
+            title {
+              text
+            }
+            articles {
+              article {
+                document {
+                  ... on PrismicArticle {
+                    data {
+                      headline {
+                        text
+                      }
+                      tag
+                      author
+                    }
                   }
-                  tag
-                  author
                 }
               }
             }
           }
+          uid
         }
       }
-      uid
     }
     articleList: allPrismicArticle(
       sort: { fields: data___date, order: DESC }

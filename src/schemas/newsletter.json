@@ -55,6 +55,13 @@
         },
         "label": "Articles"
       }
+    },
+    "pdf_upload": {
+      "type": "Link",
+      "config": {
+        "select": "media",
+        "label": "PDF Upload"
+      }
     }
   }
 }
