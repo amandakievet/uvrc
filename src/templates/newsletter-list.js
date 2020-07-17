@@ -19,9 +19,9 @@ const NewsletterListTemplate = ({ data, pageContext }) => {
         <div className="flex flex-wrap">
           {data.allPrismicNewsletter.edges.map(({ node }, index) => {
             const { title, month } = node.data;
-            const articles = node.data.articles.map(
-              articleNode => articleNode.article.document.data
-            );
+            const articles = node.data.articles
+              .filter(articleNode => !!articleNode.article.document)
+              .map(articleNode => articleNode.article.document.data);
             return (
               <Link
                 to={`/${node.uid}`}

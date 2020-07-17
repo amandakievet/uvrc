@@ -1,17 +1,18 @@
 import React from "react";
 import classnames from "classnames";
 
+import CommitteesSlice from "./committees";
+import FiftyFiftySlice from "./fifty-fifty";
 import ImageGallery from "../image-gallery";
 import RichText from "../richtext";
 import AskTheCoaches from "../ask-the-coaches";
-import FiftyFiftySlice from "./fifty-fifty";
 import MultiColumnTextSlice from "./multi-column-text";
-import CommitteesSlice from "./committees";
 import UpcomingEvents from "../upcoming-events";
 import LinkBlock from "./link-block";
 import RaceListSlice from "./race-list";
 import FullsizeImage from "./fullsize-image";
 import RichTextSlice from "./richtext-slice";
+import RowImageText from "./row-image-text";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
@@ -38,23 +39,6 @@ const Slice = ({ slice_type, primary, items, display }) => (
     {slice_type === "boards___committees" && <CommitteesSlice />}
     {slice_type === "next_meetups" && <UpcomingEvents {...primary} />}
   </>
-);
-
-const RowImageText = ({ primary }) => (
-  <div
-    className={classnames("flex flex-col md:flex-row px-4 max-w-4xl mx-auto", {
-      "md:flex-row-reverse justify-end": primary.image_position === "Right"
-    })}
-  >
-    <img
-      src={primary.image.url}
-      className={classnames("self-start sm:w-64 mb-8", {
-        "md:pr-6": primary.image_position === "Left",
-        "md:pl-6": primary.image_position === "Right"
-      })}
-    />
-    <RichText html={primary.richtext.html} />
-  </div>
 );
 
 export default Slice;

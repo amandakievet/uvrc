@@ -57,6 +57,10 @@ p {
   @apply mb-0;
 }
 
+figcaption {
+  @apply text-sm text-gray-600 mt-2;
+}
+
 @screen md {
   h1 {
     @apply text-5xl;

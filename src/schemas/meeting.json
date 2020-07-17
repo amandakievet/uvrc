@@ -32,6 +32,13 @@
         "allowTargetBlank": true,
         "label": "Content"
       }
+    },
+    "pdf_upload": {
+      "type": "Link",
+      "config": {
+        "select": "media",
+        "label": "PDF Upload"
+      }
     }
   }
 }
