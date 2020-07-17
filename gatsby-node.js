@@ -66,44 +66,6 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      wordpressNewsletters: allWordpressPost(
-        filter: { categories: { elemMatch: { name: { eq: "Newsletters" } } } }
-      ) {
-        edges {
-          node {
-            id
-            title
-            slug
-            author
-            content
-          }
-          next {
-            slug
-          }
-          previous {
-            slug
-          }
-        }
-      }
-      wordpressMeetings: allWordpressPost(
-        filter: { categories: { elemMatch: { name: { eq: "Meetings" } } } }
-      ) {
-        edges {
-          node {
-            id
-            title
-            slug
-            author
-            content
-          }
-          next {
-            slug
-          }
-          previous {
-            slug
-          }
-        }
-      }
       allPrismicPage {
         edges {
           node {
@@ -127,32 +89,18 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const allPrismicNewsletter = pages.data.allPrismicNewsletter.edges;
   const allPrismicMeeting = pages.data.allPrismicMeeting.edges;
-  const wordpressNewsletters = pages.data.wordpressNewsletters.edges;
-  const wordpressMeetings = pages.data.wordpressMeetings.edges;
 
-  allPrismicNewsletter.forEach(edge => {
+  pages.data.allPrismicNewsletter.edges.forEach(edge => {
     createPage({
       path: `/${edge.node.uid}`,
       component: path.resolve("src/templates/newsletter.js"),
       context: {
         uid: edge.node.uid,
-        next: edge.next
-          ? `/${edge.next.uid}`
-          : `/${wordpressNewsletters[0].node.slug}`,
+        next: edge.next ? `/${edge.next.uid}` : null,
         prev: edge.previous && `/${edge.previous.uid}`
       }
     });
-  });
-
-  const currentNewsletter = pages.data.allPrismicNewsletter.edges[0];
-  createPage({
-    path: `/newsletter`,
-    component: path.resolve("src/templates/newsletter-home.js"),
-    context: {
-      uid: currentNewsletter.node.uid
-    }
   });
 
   pages.data.allPrismicArticle.edges.forEach(edge => {
@@ -195,51 +143,16 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  wordpressNewsletters.forEach(edge => {
-    createPage({
-      path: `/${edge.node.slug}`,
-      component: path.resolve("src/templates/wp-post.js"),
-      context: {
-        id: edge.node.id,
-        next: edge.next && `/${edge.next.slug}`,
-        prev: edge.previous
-          ? `/${edge.previous.slug}`
-          : `/${allPrismicNewsletter[allPrismicNewsletter.length - 1].node.uid}`
-      }
-    });
-  });
-
-  const numPrismicNewsletterListPages = Math.ceil(
-    allPrismicNewsletter.length / newslettersPerPage
+  const numNewsletterListPages = Math.ceil(
+    pages.data.allPrismicNewsletter.edges.length / newslettersPerPage
   );
-  const numWPNewsletterListPages = Math.ceil(
-    wordpressNewsletters.length / newslettersPerPage
-  );
-  const numNewsletterListPages =
-    numPrismicNewsletterListPages + numWPNewsletterListPages;
-
   Array.from({ length: numNewsletterListPages }).forEach((_, index) => {
-    const source =
-      index + 1 <= numPrismicNewsletterListPages ? "prismic" : "wordpress";
-
-    let component, skip;
-
-    if (source === "prismic") {
-      component = path.resolve("src/templates/newsletter-list.js");
-      const firstItemIndex = index * newslettersPerPage;
-      const lastItemIndex = firstItemIndex + newslettersPerPage - 1;
-      skip = index * newslettersPerPage;
-    } else if (source === "wordpress") {
-      component = path.resolve("src/templates/wp-newsletter-list.js");
-      skip = (index - numPrismicNewsletterListPages) * newslettersPerPage;
-    }
-
     createPage({
       path: index === 0 ? `/all-newsletters` : `/all-newsletters/${index + 1}`,
-      component,
+      component: path.resolve("src/templates/newsletter-list.js"),
       context: {
         limit: newslettersPerPage,
-        skip,
+        skip: index * newslettersPerPage,
         numPostsPerPage: newslettersPerPage,
         prev:
           index === 0
@@ -255,64 +168,29 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const numPrismicMeetingListPages = Math.ceil(
-    allPrismicMeeting.length / meetingsPerPage
+  const numMeetingListPages = Math.ceil(
+    pages.data.allPrismicMeeting.edges.length / meetingsPerPage
   );
-  const numWPMeetingListPages = Math.ceil(
-    wordpressMeetings.length / meetingsPerPage
-  );
-  const numMeetingListPages =
-    numPrismicMeetingListPages + numWPMeetingListPages;
 
-  allPrismicMeeting.forEach(edge => {
+  pages.data.allPrismicMeeting.edges.forEach(edge => {
     createPage({
       path: `/${edge.node.uid}`,
       component: path.resolve("src/templates/meeting.js"),
       context: {
         uid: edge.node.uid,
-        next: edge.next
-          ? `/${edge.next.uid}`
-          : `/${wordpressMeetings[0].node.slug}`,
+        next: edge.next ? `/${edge.next.uid}` : null,
         prev: edge.previous && `/${edge.previous.uid}`
       }
     });
   });
 
-  wordpressMeetings.forEach(edge => {
-    createPage({
-      path: `/${edge.node.slug}`,
-      component: path.resolve("src/templates/wp-post.js"),
-      context: {
-        id: edge.node.id,
-        next: edge.next && `/${edge.next.slug}`,
-        prev: edge.previous
-          ? `/${edge.previous.slug}`
-          : `/${allPrismicMeeting[allPrismicMeeting.length - 1].node.uid}`
-      }
-    });
-  });
-
   Array.from({ length: numMeetingListPages }).forEach((_, index) => {
-    const source =
-      index + 1 <= numPrismicMeetingListPages ? "prismic" : "wordpress";
-    let component, skip;
-
-    if (source === "prismic") {
-      component = path.resolve("src/templates/meetings-list.js");
-      const firstItemIndex = index * meetingsPerPage;
-      const lastItemIndex = firstItemIndex + meetingsPerPage - 1;
-      skip = index * meetingsPerPage;
-    } else if (source === "wordpress") {
-      component = path.resolve("src/templates/wp-meetings-list.js");
-      skip = (index - numPrismicMeetingListPages) * meetingsPerPage;
-    }
-
     createPage({
       path: index === 0 ? `/all-meetings` : `/all-meetings/${index + 1}`,
-      component,
+      component: path.resolve("src/templates/meetings-list.js"),
       context: {
         limit: meetingsPerPage,
-        skip,
+        skip: index * meetingsPerPage,
         numPostsPerPage: meetingsPerPage,
         prev:
           index === 0
