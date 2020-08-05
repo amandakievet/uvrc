@@ -22,14 +22,22 @@
     "editor": {
       "type": "Select",
       "config": {
-        "options": ["Amanda Kievet", "Geoff Dunbar"],
+        "options": [
+          "Amanda Kievet",
+          "Geoff Dunbar",
+          "Laura Petto"
+        ],
         "label": "Editor"
       }
     },
     "article_collector": {
       "type": "Select",
       "config": {
-        "options": ["Amanda Kievet", "Geoff Dunbar"],
+        "options": [
+          "Amanda Kievet",
+          "Geoff Dunbar",
+          "Laura Petto"
+        ],
         "label": "Articles collected by"
       }
     },
@@ -48,7 +56,9 @@
             "type": "Link",
             "config": {
               "select": "document",
-              "customtypes": ["article"],
+              "customtypes": [
+                "article"
+              ],
               "label": "Article"
             }
           }

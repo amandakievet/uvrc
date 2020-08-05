@@ -81,7 +81,10 @@
               "image_position": {
                 "type": "Select",
                 "config": {
-                  "options": ["Left", "Right"],
+                  "options": [
+                    "Left",
+                    "Right"
+                  ],
                   "default_value": "Left",
                   "label": "Image Position"
                 }
@@ -217,7 +220,8 @@
                     "Dorcas DenHartog",
                     "Carly Wynn",
                     "Jim Burnett",
-                    "Laura Hagley"
+                    "Laura Hagley",
+                    "Tim Smith"
                   ],
                   "label": "Coach"
                 }
