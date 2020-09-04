@@ -33,7 +33,7 @@ const FiftyFiftySlice = ({
       "md:flex-row": text_placement === "right"
     })}
   >
-    <Img fluid={image.fluid} className="md:w-1/2" />
+    <Img fluid={image.fluid} className="w-full md:w-1/2" />
     <div className="md:w-1/2 flex items-center justify-center p-4">
       <div
         className={classnames("max-w-md mx-auto", {

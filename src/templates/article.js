@@ -18,7 +18,7 @@ const ArticleTemplate = ({ data, pageContext }) => {
         <div className="flex justify-between mt-10">
           {previous && <ArticleCard {...previous.data} uid={previous.uid} />}
           {next && (
-            <ArticleCard {...next.data} uid={next.uid} className="ml-auto" />
+            <ArticleCard {...next.data} uid={next.uid} className="md:ml-auto" />
           )}
         </div>
       </div>

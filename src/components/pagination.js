@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import btnStyles from "../css/buttons.module.css";
 
 const Pagination = ({ next, prev }) => (
-  <div className="flex justify-between chunkyLabel max-w-6xl w-full mx-auto mt-10">
+  <div className="flex justify-between chunkyLabel max-w-6xl w-full mx-auto mt-10 px-4">
     {prev && (
       <Link to={prev} className={btnStyles.link}>
         Newer

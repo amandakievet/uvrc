@@ -33,7 +33,7 @@ const Footer = () => {
     <>
       <Sponsors />
       <img src={footerGraphic} />
-      <div className="bg-brand pb-8 pt-8 md:pt-0 md:pb-16 px-8">
+      <div className="bg-brand pb-8 pt-8 md:pt-0 md:pb-16 px-8 -mt-1">
         <div className="max-w-6xl mx-auto w-full flex text-white text-sm justify-between">
           <div className="flex flex-col sm:flex-row">
             <ul className="mr-10">

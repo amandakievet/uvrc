@@ -53,7 +53,7 @@ const Sponsors = () => {
           <a
             href={sponsor_link.url}
             key={sponsor_name}
-            className="block w-32 md:w-40 mx-4"
+            className="block w-24 md:w-32 md:w-40 mx-4"
           >
             <Img fluid={logo.fluid} />
           </a>

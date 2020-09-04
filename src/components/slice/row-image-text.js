@@ -13,7 +13,7 @@ const RowImageText = ({ primary }) => (
     })}
   >
     <figure
-      className={classnames("self-start sm:w-64", {
+      className={classnames("self-start w-full sm:w-64", {
         "md:pr-6": primary.image_position === "Left",
         "md:pl-6": primary.image_position === "Right"
       })}
