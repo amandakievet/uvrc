@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../css/richtext.module.css";
 
 const RichText = ({ html, className }) => {
-  const strippedHtml = !!html ? html.replaceAll("undefined", "") : "";
+  const strippedHtml = html.replace(/undefined/g, "");
   return (
     <div
       className={`${styles.rt} ${className}`}

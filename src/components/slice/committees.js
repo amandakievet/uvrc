@@ -1,4 +1,4 @@
-import React, { lazy, useState, Suspense } from "react";
+import React, { lazy, useState } from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import moment from "moment";
 
@@ -22,7 +22,7 @@ const ProtectedEmail = props => {
     <button onClick={() => setShowingEmail(true)}>{props.name}</button>
   );
 
-  return <Suspense fallback={<div>loading...</div>}>{email}</Suspense>;
+  return <>{email}</>;
 };
 
 const StyledListItem = ({ children }) => <li className="pb-1">{children}</li>;
