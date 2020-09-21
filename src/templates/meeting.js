@@ -16,8 +16,10 @@ const Meeting = ({ data, pageContext }) => {
       <SEO title={title.text} />
       <div className="max-w-6xl mx-auto mb-10 py-10">
         <PageTitle title={title.text} />
-        {content.html && <RichText html={content.html} />}
-        {pdf_upload.url && <PDFDownload url={pdf_upload.url} />}
+        <div className="px-4">
+          {content.html && <RichText html={content.html} />}
+          {pdf_upload.url && <PDFDownload url={pdf_upload.url} />}
+        </div>
       </div>
       <div className="py-6">
         <Pagination {...pageContext} />

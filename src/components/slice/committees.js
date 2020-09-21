@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, useState, Suspense } from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import moment from "moment";
 
@@ -6,6 +6,24 @@ import RichText from "../richtext";
 
 import linkStyles from "../../css/link.module.css";
 import btnStyles from "../../css/buttons.module.css";
+
+const EmailLink = ({ url, name }) => (
+  <a href={url} className="underline hover:no-underline">
+    {name}
+  </a>
+);
+
+const ProtectedEmail = props => {
+  const [showingEmail, setShowingEmail] = useState(false);
+
+  let email = showingEmail ? (
+    <EmailLink {...props} />
+  ) : (
+    <button onClick={() => setShowingEmail(true)}>{props.name}</button>
+  );
+
+  return <Suspense fallback={<div>loading...</div>}>{email}</Suspense>;
+};
 
 const StyledListItem = ({ children }) => <li className="pb-1">{children}</li>;
 
@@ -39,6 +57,23 @@ const CommitteesSlice = () => {
           }
         }
       }
+      allPrismicMeeting(sort: { fields: data___date, order: DESC }, limit: 3) {
+        edges {
+          node {
+            data {
+              author
+              content {
+                text
+              }
+              date
+              title {
+                text
+              }
+            }
+            uid
+          }
+        }
+      }
     }
   `);
   const {
@@ -56,42 +91,26 @@ const CommitteesSlice = () => {
     <div className="max-w-4xl mx-auto my-10 flex px-4 flex-col md:flex-row">
       <div className="flex-1 mb-6">
         <StyledSubTitle>Officers</StyledSubTitle>
+        <p className="italic text-sm">Click on name for contact link</p>
         <ul className="mb-8">
           <StyledListItem>
             President:{" "}
-            <a
-              href={president_email.url}
-              className="underline hover:no-underline"
-            >
-              {president_name}
-            </a>
+            <ProtectedEmail url={president_email.url} name={president_name} />
           </StyledListItem>
           <StyledListItem>
             Vice President:{" "}
-            <a
-              href={vice_president_email.url}
-              className="underline hover:no-underline"
-            >
-              {vice_president}
-            </a>
+            <ProtectedEmail
+              url={vice_president_email.url}
+              name={vice_president}
+            />
           </StyledListItem>
           <StyledListItem>
             Treasurer:{" "}
-            <a
-              href={treasurer_email.url}
-              className="underline hover:no-underline"
-            >
-              {treasurer_name}
-            </a>
+            <ProtectedEmail url={treasurer_email.url} name={treasurer_name} />
           </StyledListItem>
           <StyledListItem>
             Secretary:{" "}
-            <a
-              href={secretary_email.url}
-              className="underline hover:no-underline"
-            >
-              {secretary_name}
-            </a>
+            <ProtectedEmail url={secretary_email.url} name={secretary_name} />
           </StyledListItem>
         </ul>
         <StyledSubTitle>Board</StyledSubTitle>
@@ -102,6 +121,22 @@ const CommitteesSlice = () => {
         </ul>
       </div>
       <div className="flex-1">
+        {data.allPrismicMeeting.edges.map(({ node }, index) => {
+          const { title, content, author, date } = node.data;
+          return (
+            <Link to={`/${node.uid}`} className="block" key={index}>
+              <div className="border-t-2 pt-3 mb-10">
+                <p className="text-gray-500 chunkyLabel">
+                  {moment(date).format("MMMM Do YYYY")}
+                </p>
+                <h4 className="">{title.text}</h4>
+                <p className="text-sm">
+                  {content.text.slice(0, 100).concat("...")}
+                </p>
+              </div>
+            </Link>
+          );
+        })}
         <Link to="/all-meetings/" className={btnStyles.link}>
           All Meeting Notes
         </Link>
