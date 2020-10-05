@@ -28,7 +28,8 @@
           "Social Events",
           "Ask the Coaches",
           "Runner Profile",
-          "Route of the Month"
+          "Route of the Month",
+          "Hit the Trail"
         ],
         "default_value": "Member Submission",
         "label": "Tag"
@@ -81,10 +82,7 @@
               "image_position": {
                 "type": "Select",
                 "config": {
-                  "options": [
-                    "Left",
-                    "Right"
-                  ],
+                  "options": ["Left", "Right"],
                   "default_value": "Left",
                   "label": "Image Position"
                 }
