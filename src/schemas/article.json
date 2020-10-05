@@ -69,7 +69,8 @@
           "image_gallery": [],
           "richtext": [],
           "fullsize_image": [],
-          "ask_the_coaches": []
+          "ask_the_coaches": [],
+          "quote": []
         },
         "choices": {
           "row_image___text": {
@@ -233,6 +234,30 @@
                 }
               }
             }
+          },
+          "quote": {
+            "type": "Slice",
+            "fieldset": "Quote",
+            "description": "A blockquote section",
+            "icon": "format_quote",
+            "display": "list",
+            "non-repeat": {
+              "quote": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, em, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Quote"
+                }
+              },
+              "author1": {
+                "type": "Text",
+                "config": {
+                  "label": "Author"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

@@ -153,6 +153,15 @@ export const query = graphql`
                         coach
                       }
                     }
+                    ... on PrismicArticleBodyQuote {
+                      slice_type
+                      primary {
+                        quote {
+                          html
+                        }
+                        author1
+                      }
+                    }
                     ... on PrismicArticleBodyFullsizeImage {
                       slice_type
                       primary {

@@ -89,6 +89,15 @@ export const query = graphql`
               }
             }
           }
+          ... on PrismicArticleBodyQuote {
+            slice_type
+            primary {
+              quote {
+                html
+              }
+              author1
+            }
+          }
           ... on PrismicArticleBodyRowImageText {
             slice_type
             primary {
