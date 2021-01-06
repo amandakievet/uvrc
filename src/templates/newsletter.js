@@ -165,6 +165,9 @@ export const query = graphql`
                     ... on PrismicArticleBodyFullsizeImage {
                       slice_type
                       primary {
+                        caption_optional_ {
+                          text
+                        }
                         image {
                           fluid(maxWidth: 1024) {
                             base64
@@ -183,6 +186,7 @@ export const query = graphql`
                       items {
                         gallery_image {
                           url
+                          alt
                           thumbnails {
                             Thumbnail {
                               url

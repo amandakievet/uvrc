@@ -6,14 +6,19 @@ const ImageGallery = ({ items }) => {
 
   return (
     <>
-      <div className="flex flex-wrap mb-8 justify-center items-center">
+      <div className="flex flex-wrap mb-8 justify-center">
         {items.map(({ gallery_image }, index) => (
-          <img
-            className="cursor-pointer p-3 w-1/3 md:w-1/4 lg:w-1/5"
-            src={gallery_image.thumbnails.Thumbnail.url}
-            onClick={() => setToggler(!toggler)}
-            key={index}
-          />
+          <div className="p-3 w-1/3 md:w-1/4 lg:w-1/5">
+            <img
+              className="cursor-pointer "
+              src={gallery_image.thumbnails.Thumbnail.url}
+              onClick={() => setToggler(!toggler)}
+              key={index}
+            />
+            {gallery_image.alt && (
+              <p className="text-sm leading-tight pt-4">{gallery_image.alt}</p>
+            )}
+          </div>
         ))}
       </div>
       <FsLightbox
