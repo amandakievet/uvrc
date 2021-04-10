@@ -31,7 +31,6 @@
           "Route of the Month",
           "Hit the Trail"
         ],
-        "default_value": "Member Submission",
         "label": "Tag"
       }
     },
@@ -84,7 +83,6 @@
                 "type": "Select",
                 "config": {
                   "options": ["Left", "Right"],
-                  "default_value": "Left",
                   "label": "Image Position"
                 }
               },
@@ -220,7 +218,8 @@
                     "Carly Wynn",
                     "Jim Burnett",
                     "Laura Hagley",
-                    "Tim Smith"
+                    "Tim Smith",
+                    "Greg Hagley"
                   ],
                   "label": "Coach"
                 }
