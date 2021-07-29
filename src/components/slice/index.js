@@ -14,6 +14,7 @@ import FullsizeImage from "./fullsize-image";
 import RichTextSlice from "./richtext-slice";
 import RowImageText from "./row-image-text";
 import Quote from "./quote";
+import IFrame from "./iframe";
 
 const Slice = ({ slice_type, primary, items, display }) => (
   <>
@@ -40,6 +41,7 @@ const Slice = ({ slice_type, primary, items, display }) => (
     {slice_type === "boards___committees" && <CommitteesSlice />}
     {slice_type === "next_meetups" && <UpcomingEvents {...primary} />}
     {slice_type === "quote" && <Quote {...primary} />}
+    {slice_type === "iframe" && <IFrame {...primary} />}
   </>
 );
 

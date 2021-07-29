@@ -23,7 +23,7 @@
     "page_content": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
         "label": "Page Content"
       }
     },
@@ -31,12 +31,7 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": {
-          "boards___committees": [],
-          "next_meetups": [],
-          "link_blocks": [],
-          "race_list": []
-        },
+        "labels": {},
         "choices": {
           "50_50": {
             "type": "Slice",
@@ -48,14 +43,14 @@
               "header": {
                 "type": "StructuredText",
                 "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6",
                   "label": "Header"
                 }
               },
               "text": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, strong, em, hyperlink",
+                  "multi": "paragraph,strong,em,hyperlink",
                   "allowTargetBlank": true,
                   "label": "Text"
                 }
@@ -70,7 +65,8 @@
                 "type": "Link",
                 "config": {
                   "label": "Cta Link",
-                  "allowTargetBlank": true
+                  "allowTargetBlank": true,
+                  "select": null
                 }
               },
               "image": {
@@ -84,7 +80,10 @@
               "text_placement": {
                 "type": "Select",
                 "config": {
-                  "options": ["right", "left"],
+                  "options": [
+                    "right",
+                    "left"
+                  ],
                   "default_value": "right",
                   "label": "Text Placement"
                 }
@@ -92,7 +91,11 @@
               "text_align": {
                 "type": "Select",
                 "config": {
-                  "options": ["center", "right", "left"],
+                  "options": [
+                    "center",
+                    "right",
+                    "left"
+                  ],
                   "label": "Text Align"
                 }
               }
@@ -110,7 +113,7 @@
               "richtext": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
                   "allowTargetBlank": true,
                   "label": "Richtext"
                 }
@@ -136,7 +139,7 @@
               "title": {
                 "type": "StructuredText",
                 "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6",
                   "label": "Title"
                 }
               }
@@ -153,7 +156,7 @@
               "richtext": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
                   "allowTargetBlank": true,
                   "label": "richtext"
                 }
@@ -171,7 +174,7 @@
               "link_block_title": {
                 "type": "StructuredText",
                 "config": {
-                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6",
                   "label": "Link Block Title"
                 }
               }
@@ -186,7 +189,8 @@
               "block_link": {
                 "type": "Link",
                 "config": {
-                  "label": "Block Link"
+                  "label": "Block Link",
+                  "select": null
                 }
               }
             }
@@ -227,10 +231,27 @@
                 "type": "Link",
                 "config": {
                   "label": "Race Link",
-                  "allowTargetBlank": true
+                  "allowTargetBlank": true,
+                  "select": null
                 }
               }
             }
+          },
+          "iframe": {
+            "type": "Slice",
+            "fieldset": "iFrame",
+            "description": "For embedding iFrames",
+            "icon": "aspect_ratio",
+            "non-repeat": {
+              "iframe_code": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "embed",
+                  "label": "iFrame Code"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

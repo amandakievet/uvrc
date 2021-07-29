@@ -136,6 +136,14 @@ export const query = graphql`
               distance
             }
           }
+          ... on PrismicPageBodyIframe {
+            slice_type
+            primary {
+              iframe_code {
+                text
+              }
+            }
+          }
         }
       }
     }
