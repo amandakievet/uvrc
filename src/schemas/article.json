@@ -29,7 +29,9 @@
           "Ask the Coaches",
           "Runner Profile",
           "Route of the Month",
-          "Hit the Trail"
+          "Hit the Trail",
+          "UVRC Labs",
+          "Race Announcements"
         ],
         "label": "Tag"
       }
@@ -43,7 +45,7 @@
     "richtext": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
         "allowTargetBlank": true,
         "label": "Richtext"
       }
@@ -105,7 +107,7 @@
               "richtext": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, o-list-item",
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,o-list-item",
                   "allowTargetBlank": true,
                   "label": "Richtext"
                 }
@@ -154,7 +156,7 @@
               "rich_text": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
                   "label": "Rich text"
                 }
               }
@@ -227,7 +229,7 @@
               "answer": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
                   "allowTargetBlank": true,
                   "label": "Answer"
                 }
@@ -244,7 +246,7 @@
               "quote": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph, em, hyperlink",
+                  "multi": "paragraph,em,hyperlink",
                   "allowTargetBlank": true,
                   "label": "Quote"
                 }

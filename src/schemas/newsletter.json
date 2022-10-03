@@ -23,6 +23,11 @@
       "type": "Select",
       "config": {
         "options": [
+          "Anne Farrell",
+          "Nicole Losavio",
+          "Joffrey Peters",
+          "Hannah Taska",
+          "Robert Jones",
           "Amanda Kievet",
           "Geoff Dunbar",
           "Laura Petto"
@@ -34,6 +39,11 @@
       "type": "Select",
       "config": {
         "options": [
+          "Anne Farrell",
+          "Nicole Losavio",
+          "Joffrey Peters",
+          "Hannah Taska",
+          "Robert Jones",
           "Amanda Kievet",
           "Geoff Dunbar",
           "Laura Petto"
@@ -44,7 +54,7 @@
     "note_from_the_editor": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,o-list-item",
         "label": "Note from the Editor"
       }
     },
@@ -56,9 +66,7 @@
             "type": "Link",
             "config": {
               "select": "document",
-              "customtypes": [
-                "article"
-              ],
+              "customtypes": ["article"],
               "label": "Article"
             }
           }
