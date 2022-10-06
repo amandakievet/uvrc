@@ -28,7 +28,11 @@ export default ArticleListTemplate;
 
 export const query = graphql`
   query prismicArticleQuery($skip: Int!, $limit: Int!) {
-    allPrismicArticle(limit: $limit, skip: $skip) {
+    allPrismicArticle(
+      sort: { fields: data___date, order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       edges {
         node {
           uid

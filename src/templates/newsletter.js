@@ -68,7 +68,7 @@ const NewsletterTemplate = ({ data, pageContext }) => {
               ]
                 .filter(({ profile }) => !!profile)
                 .map(({ profile, title }) => (
-                  <div className="pb-4">
+                  <div className="pb-4" key={title}>
                     <h6 className="mb-3 text-gray-500">{title}</h6>
                     <Profile {...profile} />
                   </div>
